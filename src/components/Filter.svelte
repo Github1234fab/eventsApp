@@ -89,7 +89,7 @@
                                         <button class="effacer-button" on:click={() => (startDate = "")}><i class="fa-regular fa-circle-xmark"></i></button>
                                 </label>
                                 <label>
-                                       Au :
+                                        Au :
                                         <input type="date" bind:value={endDate} />
                                         <button class="effacer-button" on:click={() => (endDate = "")}><i class="fa-regular fa-circle-xmark"></i></button>
                                 </label>
@@ -241,8 +241,8 @@
                 label {
                         flex-direction: row;
                 }
-                .wrapper-inputs{
-                                       min-width: 98%;
+                .wrapper-inputs {
+                        min-width: 98%;
                 }
                 .wrapper-label {
                         max-width: 100%;
@@ -252,6 +252,5 @@
                         top: -40px;
                         left: 100%;
                 }
-          
         }
 </style>

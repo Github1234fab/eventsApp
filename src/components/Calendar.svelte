@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
         import Filter from "../components/Filter.svelte";
         import { onMount } from "svelte";
         import { jsonDataByDate, selectedDate } from "../lib/store.js";
@@ -91,6 +91,116 @@
                         filteredEvents.set(events); // Mettre à jour les événements filtrés
                 });
         }
+</script> -->
+
+<script>
+        import Filter from "../components/Filter.svelte";
+        import { onMount } from "svelte";
+        import { jsonDataByDate, selectedDate } from "../lib/store.js";
+        import { writable, get } from "svelte/store";
+        import Collapse from "../components/Collapse.svelte";
+
+        let startDate = "";
+        let endDate = "";
+        let filterLieu = "";
+        let type = "";
+
+        let currentDate = writable(new Date());
+        let today = new Date();
+        let days = [];
+        let eventsForSelectedDay = writable([]);
+        let filteredEvents = writable([]);
+        let dataLoaded = writable(false);
+        let eventsByCategory = writable({});
+
+        function loadDays(date) {
+                const year = date.getFullYear();
+                const month = date.getMonth();
+                const firstDayOfMonth = new Date(year, month, 1);
+                const lastDayOfMonth = new Date(year, month + 1, 0);
+                const startDay = firstDayOfMonth.getDay() === 0 ? 6 : firstDayOfMonth.getDay() - 1;
+                const endDay = lastDayOfMonth.getDay() === 0 ? 6 : lastDayOfMonth.getDay() - 1;
+
+                days = [];
+
+                for (let i = startDay; i > 0; i--) {
+                        days.push(new Date(year, month, 1 - i));
+                }
+
+                for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
+                        days.push(new Date(year, month, i));
+                }
+
+                for (let i = 1; i < 7 - endDay; i++) {
+                        days.push(new Date(year, month + 1, i));
+                }
+        }
+
+        function handleDayClick(day) {
+                const adjustedDay = adjustForTimezone(day);
+                selectedDate.set(adjustedDay);
+                const selectedDateISO = adjustedDay.toISOString().slice(0, 10);
+                const events = get(jsonDataByDate)[selectedDateISO] || [];
+                eventsForSelectedDay.set(events);
+        }
+
+        function goToNextMonth() {
+                const date = get(currentDate);
+                date.setMonth(date.getMonth() + 1);
+                currentDate.set(new Date(date));
+                loadDays(date);
+        }
+
+        function goToPreviousMonth() {
+                const date = get(currentDate);
+                date.setMonth(date.getMonth() - 1);
+                currentDate.set(new Date(date));
+                loadDays(date);
+        }
+
+        function adjustForTimezone(date) {
+                const adjustedDate = new Date(date);
+                adjustedDate.setHours(adjustedDate.getHours() - adjustedDate.getTimezoneOffset() / 60);
+                return adjustedDate;
+        }
+
+        function countEventsByCategory(events) {
+                const categoryCount = {};
+                events.forEach((event) => {
+                        if (categoryCount[event.type]) {
+                                categoryCount[event.type]++;
+                        } else {
+                                categoryCount[event.type] = 1;
+                        }
+                });
+                eventsByCategory.set(categoryCount);
+        }
+
+        onMount(() => {
+                loadDays(get(currentDate));
+
+                const unsubscribe = jsonDataByDate.subscribe((data) => {
+                        if (Object.keys(data).length > 0) {
+                                const todayISO = today.toISOString().slice(0, 10);
+                                const initialEvents = data[todayISO] || [];
+                                eventsForSelectedDay.set(initialEvents);
+                                filteredEvents.set(initialEvents);
+                                countEventsByCategory(initialEvents);
+                                dataLoaded.set(true);
+                                unsubscribe();
+                        }
+                });
+        });
+
+        $: if (dataLoaded) {
+                selectedDate.subscribe((date) => {
+                        const selectedDateISO = date.toISOString().slice(0, 10);
+                        const events = get(jsonDataByDate)[selectedDateISO] || [];
+                        eventsForSelectedDay.set(events);
+                        filteredEvents.set(events);
+                        countEventsByCategory(events); // Mettre à jour le compteur de catégories
+                });
+        }
 </script>
 
 <div class="wrapper-month-display">
@@ -118,6 +228,15 @@
                                 on:click={() => handleDayClick(day)}
                         >
                                 {day.getDate()}
+                        </button>
+                {/each}
+        </div>
+
+        <div class="category-list">
+                <h3>Événements par catégorie :</h3>
+                {#each Object.entries($eventsByCategory) as [category, count]}
+                        <button on:click={() => filterByCategory(category)}>
+                                {category}: {count} événement(s)
                         </button>
                 {/each}
         </div>
@@ -153,12 +272,12 @@
         button.tag-data::after {
                 position: absolute;
                 content: "*";
-                background-color: var(--cta);
+                background-color: var(--primary);
                 width: 30%;
                 height: 30%;
                 transform: rotate(45deg);
                 top: -20%;
-                left: 80%;
+                left: 82%;
                 z-index: 2;
         }
         button {
@@ -219,13 +338,19 @@
                 gap: 5px;
                 padding: 10px;
                 min-width: 70%;
-
         }
         .days-of-week {
                 padding: 10px;
                 text-align: center;
                 cursor: pointer;
                 background-color: transparent;
+                color: var(--primary);
+                font-weight: 200;
+                font-size: 0.7rem;
+             
+        }
+        .days-of-week:nth-child(7n + 6),
+        .days-of-week:nth-child(7n + 7) {
                 color: var(--primary);
                 font-weight: 500;
         }
@@ -236,10 +361,9 @@
                 background-color: transparent;
                 color: var(--primary);
                 font-weight: 700;
-           
         }
         .selected {
-                background-color: var(--primary); /* Vert pour la date sélectionnée */
+                background-color: var(--cta); /* Vert pour la date sélectionnée */
                 color: white;
         }
         .other-month {
@@ -251,10 +375,10 @@
                 font-weight: bold;
                 border: 1px solid grey;
         }
-        .calendar .day:nth-child(7n + 6),
+        /* .calendar .day:nth-child(7n + 6),
         .calendar .day:nth-child(7n + 7) {
-                background-color: rgb(226, 226, 226);
+                background-color: transparent;
                 color: var(--primary);
                 font-weight: 600;
-        }
+        } */
 </style>
