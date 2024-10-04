@@ -153,7 +153,7 @@
         button.tag-data::after {
                 position: absolute;
                 content: "*";
-                background-color: rgb(97, 73, 250);
+                background-color: var(--cta);
                 width: 30%;
                 height: 30%;
                 transform: rotate(45deg);
@@ -205,8 +205,8 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
-                height: 100vh;
-                padding: 30px;
+                max-height: auto;
+                padding: 20px;
                 margin-top: 0px auto;
                 width: auto;
                 border-radius: 8px;
@@ -239,7 +239,7 @@
            
         }
         .selected {
-                background-color: #28a745; /* Vert pour la date sélectionnée */
+                background-color: var(--primary); /* Vert pour la date sélectionnée */
                 color: white;
         }
         .other-month {
