@@ -119,7 +119,7 @@
                 align-items: baseline;
                 justify-content: center;
                 align-content: center;
-                margin: 20px auto;
+                margin: 30px auto;
                 border: 1px solid pink;
                 border-radius: 8px;
                 padding: 20px 30px;
@@ -134,7 +134,8 @@
                 justify-content: center;
                 gap: 10px;
                 position: relative;
-                margin: 20px auto;
+                margin: 0px auto;
+                margin-top: 30px;
         }
         label {
                 display: flex;
@@ -238,14 +239,18 @@
         }
         @media screen and (max-width: 768px) {
                 label {
-                        flex-direction: column;
+                        flex-direction: row;
+                }
+                .wrapper-inputs{
+                                       min-width: 98%;
                 }
                 .wrapper-label {
+                        max-width: 100%;
                         gap: 20px;
                 }
                 .erase-button {
-                        top: -30px;
-                        left: 130%;
+                        top: -40px;
+                        left: 100%;
                 }
           
         }
