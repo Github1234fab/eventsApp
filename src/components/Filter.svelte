@@ -84,12 +84,12 @@
                                         <button class="effacer-button" on:click={() => (type = "")}><i class="fa-regular fa-circle-xmark"></i></button>
                                 </label>
                                 <label>
-                                        Date de début :
+                                        Du :
                                         <input type="date" bind:value={startDate} />
                                         <button class="effacer-button" on:click={() => (startDate = "")}><i class="fa-regular fa-circle-xmark"></i></button>
                                 </label>
                                 <label>
-                                        Date de fin :
+                                       Au :
                                         <input type="date" bind:value={endDate} />
                                         <button class="effacer-button" on:click={() => (endDate = "")}><i class="fa-regular fa-circle-xmark"></i></button>
                                 </label>
