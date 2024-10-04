@@ -104,12 +104,9 @@
 
 {#if $dataLoaded}
         <div class="calendar">
-
-
-{#each ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"] as day}
-  <p class="days-of-week">{day}</p>
-{/each}
-
+                {#each ["L", "M", "M", "J", "V", "S", "D"] as day}
+                        <p class="days-of-week">{day}</p>
+                {/each}
 
                 {#each days as day}
                         <button
@@ -124,7 +121,6 @@
                         </button>
                 {/each}
         </div>
-      
 
         <!-- Interface utilisateur pour les filtres   -->
         <div class="event-info">
@@ -140,7 +136,7 @@
         </div>
 {:else}
         <!-- <p>Chargement des données...</p> -->
-{/if} 
+{/if}
 
 <style>
         .wrapper-collapse {
@@ -150,7 +146,6 @@
                 justify-content: center;
                 gap: 10px;
                 max-width: 60%;
-                
         }
         .button-mont-select {
                 background-color: var(--colorA);
@@ -182,7 +177,7 @@
                 justify-content: center;
                 margin-bottom: 0.5rem;
                 gap: 40px;
-                           margin-top: 20px;
+                margin-top: 20px;
         }
         .currentMonth {
                 color: var(--primary);
@@ -201,7 +196,7 @@
                 border: 1px solid var(--primary);
                 cursor: pointer;
                 color: var(--primary);
-        padding: 0px;
+                padding: 0px;
                 border-radius: 50%;
         }
 
@@ -222,28 +217,26 @@
                 display: grid;
                 grid-template-columns: repeat(7, 1fr);
                 gap: 5px;
-                padding: 30px;
-                max-width: 80%;
-                margin: 0 auto;
-     
+                padding: 10px;
+                min-width: 70%;
+
         }
         .days-of-week {
                 padding: 10px;
                 text-align: center;
                 cursor: pointer;
                 background-color: transparent;
-                color: var(--whiteGrey);
+                color: var(--primary);
                 font-weight: 500;
-                font-size: 1.1rem;
         }
         .day {
                 padding: 10px;
                 text-align: center;
-                cursor: pointer;        
+                cursor: pointer;
                 background-color: transparent;
                 color: var(--primary);
                 font-weight: 700;
-                font-size: 1.1rem;
+           
         }
         .selected {
                 background-color: #28a745; /* Vert pour la date sélectionnée */
@@ -253,14 +246,14 @@
                 color: #ccc;
         }
         .today {
-                background-color:  var(--cta2);
+                background-color: var(--cta2);
                 color: var(--whiteGrey);
                 font-weight: bold;
                 border: 1px solid grey;
         }
         .calendar .day:nth-child(7n + 6),
         .calendar .day:nth-child(7n + 7) {
-                background-color:  transparent;
+                background-color: rgb(226, 226, 226);
                 color: var(--primary);
                 font-weight: 600;
         }

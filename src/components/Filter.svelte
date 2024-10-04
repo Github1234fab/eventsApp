@@ -1,6 +1,6 @@
 <script>
         import { writable } from "svelte/store";
-        import { fly } from "svelte/transition";
+        import { slide } from "svelte/transition";
 
         export let jsonDataByDate;
         export let startDate = "";
@@ -11,10 +11,17 @@
 
         let OpenFilter = false;
         let showInputs = true;
-
-        function removeWrapper() {
-                showInputs = false;
+        function toggleFilter() {
+                OpenFilter = !OpenFilter;
+                if (!OpenFilter) {
+                        // Quand on ouvre le filtre, on réinitialise showInputs à true
+                        showInputs = true;
+                }
         }
+
+        //     function removeWrapper() {
+        //         showInputs = false;  // Cacher le wrapper-inputs
+        //     }
 
         const types = ["brocante", "foire", "fêtes", "café philo", "concert", "conférence", "concours photo", "lecture contes"];
 
@@ -52,19 +59,19 @@
 </script>
 
 <section>
-        <button class="setUp-button" on:click={() => (OpenFilter = !OpenFilter)}><i class="fa-solid fa-sliders"></i></button>
+        <button class="setUp-button" on:click={toggleFilter}><i class="fa-solid fa-sliders"></i></button>
 
-        {#if OpenFilter}
-           {#if showInputs}
-                <div class="wrapper-inputs" in:fly={{ x: -300, duration: 1300, opacity: 0.5 }} out:fly={{ x: 1800, duration: 900, opacity: 0.5 }}>
+        {#if OpenFilter && showInputs}
+                <div class="wrapper-inputs" in:slide={{ x: -300, duration: 1300, opacity: 0.5 }} out:slide={{ x: 1200, duration: 900, opacity: 0.5 }}>
                         <div class="wrapper-label">
-                             
-                                        <button on:click={removeWrapper}><i class="fa-solid fa-circle-xmark erase-button"></i></button>
-                            
+                                <button class="erase-button" on:click={toggleFilter}>
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                </button>
+
                                 <label>
                                         Lieu :
                                         <input type="text" bind:value={filterLieu} placeholder="Filtrer par lieu" />
-                                        <button class="effacer-button" on:click={() => (filterLieu = "")}>Effacer</button>
+                                        <button class="effacer-button" on:click={() => (filterLieu = "")}><i class="fa-regular fa-circle-xmark"></i></button>
                                 </label>
                                 <label>
                                         Type :
@@ -74,25 +81,24 @@
                                                         <option value={t}>{t}</option>
                                                 {/each}
                                         </select>
-                                        <button class="effacer-button" on:click={() => (type = "")}>Effacer</button>
+                                        <button class="effacer-button" on:click={() => (type = "")}><i class="fa-regular fa-circle-xmark"></i></button>
                                 </label>
                                 <label>
                                         Date de début :
                                         <input type="date" bind:value={startDate} />
-                                        <button class="effacer-button" on:click={() => (startDate = "")}>Effacer</button>
+                                        <button class="effacer-button" on:click={() => (startDate = "")}><i class="fa-regular fa-circle-xmark"></i></button>
                                 </label>
                                 <label>
                                         Date de fin :
                                         <input type="date" bind:value={endDate} />
-                                        <button class="effacer-button" on:click={() => (endDate = "")}>Effacer</button>
+                                        <button class="effacer-button" on:click={() => (endDate = "")}><i class="fa-regular fa-circle-xmark"></i></button>
                                 </label>
                         </div>
                         <div class="wrapper-buttons-apply">
                                 <button class="buttons-apply" on:click={resetFilters}>Réintialiser</button>
-                                <button class="buttons-apply" on:click={applyFilter}>Appliquer </button>
+                                <button class="buttons-apply apply" on:click={applyFilter}>Appliquer </button>
                         </div>
                 </div>
-                    {/if}
         {/if}
 </section>
 
@@ -107,7 +113,7 @@
 
         .wrapper-inputs {
                 display: flex;
-                min-width: 30%;
+                max-width: 90%;
                 height: auto;
                 flex-direction: column;
                 align-items: baseline;
@@ -124,11 +130,11 @@
         .wrapper-label {
                 display: flex;
                 flex-direction: column;
-                align-items: baseline;
+                align-items: center;
                 justify-content: center;
-                gap: 3px;
+                gap: 10px;
                 position: relative;
-                margin-top: 40px;
+                margin: 20px auto;
         }
         label {
                 display: flex;
@@ -137,6 +143,7 @@
                 justify-content: center;
                 gap: 10px;
                 color: var(--whiteGrey);
+                font-weight: 900;
         }
         .erase-button {
                 position: absolute;
@@ -144,11 +151,12 @@
                 font-size: 1.3rem;
                 font-weight: 300;
                 cursor: pointer;
-                transition: 0.3s ease-in-out;
-                top: -40px;
+                top: -30px;
                 left: 98%;
                 box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.446);
                 transition: 0.3s ease-in-out;
+                background-color: transparent;
+                border: none;
         }
         .erase-button:hover {
                 transform: scale(1.1);
@@ -191,31 +199,54 @@
                 align-self: center;
         }
         .buttons-apply {
-                color: white;
+                color: var(--primary);
                 min-width: auto;
                 padding: 10px 15px;
                 border-radius: 8px;
                 border: none;
                 background-color: var(--cta);
-                font-weight: 600;
+                font-weight: 400;
                 cursor: pointer;
                 transition: 0.3s ease-in-out;
+                font-size: 1rem;
+                letter-spacing: 0px;
+        }
+        .apply {
+                background-color: var(--green);
+                color: white;
         }
         .buttons-apply:hover {
                 transform: scale(1.1);
         }
         .effacer-button {
-                color: var(--whiteGrey);
-                padding: 5px 10px;
-                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--cta2);
+                font-size: 1.4rem;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
                 border: none;
-                background-color: var(--cta2);
-                font-weight: 500;
-                letter-spacing: 1px;
+                background-color: transparent;
+                font-weight: 900;
                 cursor: pointer;
                 transition: 0.3s ease-in-out;
         }
         .effacer-button:hover {
                 transform: scale(0.9);
+        }
+        @media screen and (max-width: 768px) {
+                label {
+                        flex-direction: column;
+                }
+                .wrapper-label {
+                        gap: 20px;
+                }
+                .erase-button {
+                        top: -30px;
+                        left: 130%;
+                }
+          
         }
 </style>
