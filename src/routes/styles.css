@@ -1,0 +1,22 @@
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+}
+
+html,
+body {
+        font-family: "Roboto Flex";
+        background-color: var(--whiteGrey);
+}
+
+:root {
+        --colorA: rgb(185, 184, 184);
+        --cta: #fe8e3c;
+        --cta2: #9f99ff;
+        --primary: #402e32;
+        --secondary: #673c1f;
+        --tertiary: #b3867c;
+        --quaternary: #8a4e41;
+        --whiteGrey: #f5f5f5;
+}
