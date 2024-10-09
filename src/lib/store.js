@@ -13,3 +13,14 @@ export const filters = writable({
         endDate: "",
         organizer: "",
 });
+
+export const bonjour = writable([
+        {
+                name: "John",
+                age: 30,
+        },
+        {
+                name: "Jane",
+                age: 25,
+        },
+]);

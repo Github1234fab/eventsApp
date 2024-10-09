@@ -1,6 +1,7 @@
 <script>
   import { db } from '../../lib/firebase.js'; // Assurez-vous que le chemin est correct
   import { collection, doc, writeBatch } from 'firebase/firestore';
+  import DeleteBdd from "../../components/deleteBdd.svelte";
 
   let file;
 
@@ -48,5 +49,7 @@
 
 <input type="file" accept=".json" on:change={handleFileChange} />
 <button on:click={handleFileUpload}>Upload and Import JSON</button>
+
+<DeleteBdd />
 
 

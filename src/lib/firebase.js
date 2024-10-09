@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
-import { initializeAnalytics, isSupported as isAnalyticsSupported } from "firebase/analytics";
+// import { getMessaging, getToken, onMessage } from "firebase/messaging";
+// import { initializeAnalytics, isSupported as isAnalyticsSupported } from "firebase/analytics";
+
+
 
 // Configuration Firebase
 const firebaseConfig = {
@@ -16,6 +18,15 @@ const firebaseConfig = {
 
 // Initialiser Firebase App
 const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+
+
+
+
+
+
+
+
 
 // // Initialiser Firebase Analytics uniquement côté client
 // export const initAnalytics = async () => {
@@ -28,7 +39,8 @@ const app = initializeApp(firebaseConfig);
 // };
 
 // Initialiser Firestore
-export const db = getFirestore(app);
+
+
 
 // Fonction pour sauvegarder le token sur le serveur
 // const saveTokenToServer = async (token) => {

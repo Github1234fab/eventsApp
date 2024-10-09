@@ -1,135 +1,48 @@
-<!-- <script>
-        import Filter from "../components/Filter.svelte";
-        import { onMount } from "svelte";
-        import { jsonDataByDate, selectedDate } from "../lib/store.js";
-        import { writable, get } from "svelte/store";
-        import Collapse from "../components/Collapse.svelte";
-
-        let startDate = "";
-        let endDate = "";
-        let filterLieu = "";
-        let type = "";
-
-        let currentDate = writable(new Date());
-        let today = new Date();
-        let days = [];
-        let eventsForSelectedDay = writable([]);
-        let filteredEvents = writable([]);
-        let dataLoaded = writable(false);
-
-        function loadDays(date) {
-                const year = date.getFullYear();
-                const month = date.getMonth();
-                const firstDayOfMonth = new Date(year, month, 1);
-                const lastDayOfMonth = new Date(year, month + 1, 0);
-                const startDay = firstDayOfMonth.getDay() === 0 ? 6 : firstDayOfMonth.getDay() - 1;
-                const endDay = lastDayOfMonth.getDay() === 0 ? 6 : lastDayOfMonth.getDay() - 1;
-
-                days = [];
-
-                for (let i = startDay; i > 0; i--) {
-                        days.push(new Date(year, month, 1 - i));
-                }
-
-                for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
-                        days.push(new Date(year, month, i));
-                }
-
-                for (let i = 1; i < 7 - endDay; i++) {
-                        days.push(new Date(year, month + 1, i));
-                }
-        }
-
-        function handleDayClick(day) {
-                const adjustedDay = adjustForTimezone(day);
-                selectedDate.set(adjustedDay);
-                const selectedDateISO = adjustedDay.toISOString().slice(0, 10);
-                const events = get(jsonDataByDate)[selectedDateISO] || [];
-                eventsForSelectedDay.set(events);
-        }
-
-        function goToNextMonth() {
-                const date = get(currentDate);
-                date.setMonth(date.getMonth() + 1);
-                currentDate.set(new Date(date));
-                loadDays(date);
-        }
-
-        function goToPreviousMonth() {
-                const date = get(currentDate);
-                date.setMonth(date.getMonth() - 1);
-                currentDate.set(new Date(date));
-                loadDays(date);
-        }
-
-        function adjustForTimezone(date) {
-                const adjustedDate = new Date(date);
-                adjustedDate.setHours(adjustedDate.getHours() - adjustedDate.getTimezoneOffset() / 60);
-                return adjustedDate;
-        }
-
-        onMount(() => {
-                loadDays(get(currentDate));
-
-                const unsubscribe = jsonDataByDate.subscribe((data) => {
-                        if (Object.keys(data).length > 0) {
-                                const todayISO = today.toISOString().slice(0, 10);
-                                const initialEvents = data[todayISO] || [];
-                                eventsForSelectedDay.set(initialEvents);
-                                filteredEvents.set(initialEvents);
-                                dataLoaded.set(true);
-                                unsubscribe();
-                        }
-                });
-        });
-
-        $: if (dataLoaded) {
-                selectedDate.subscribe((date) => {
-                        const selectedDateISO = date.toISOString().slice(0, 10);
-                        const events = get(jsonDataByDate)[selectedDateISO] || [];
-                        eventsForSelectedDay.set(events);
-                        filteredEvents.set(events); // Mettre à jour les événements filtrés
-                });
-        }
-</script> -->
-
 <script>
         import Filter from "../components/Filter.svelte";
         import { onMount } from "svelte";
         import { jsonDataByDate, selectedDate } from "../lib/store.js";
-        import { writable, get } from "svelte/store";
+        import { writable, get } from "svelte/store"; // Import de `writable` pour créer des stores réactifs, et de `get` pour accéder aux valeurs des stores
         import Collapse from "../components/Collapse.svelte";
 
-        let startDate = "";
-        let endDate = "";
-        let filterLieu = "";
-        let type = "";
+        let startDate = ""; // Stockage de la date de début (pas encore utilisée ici)
+        let endDate = ""; // Stockage de la date de fin (pas encore utilisée ici)
+        let filterLieu = ""; // Filtre basé sur un lieu spécifique (pas encore utilisée ici)
+        let type = ""; // Type d'événement filtré (pas encore utilisé ici)
 
-        let currentDate = writable(new Date());
-        let today = new Date();
-        let days = [];
-        let eventsForSelectedDay = writable([]);
-        let filteredEvents = writable([]);
-        let dataLoaded = writable(false);
-        let eventsByCategory = writable({});
+        let currentDate = writable(new Date()); // Stockage de la date actuelle sous forme de store réactif
+        let today = new Date(); // Date d'aujourd'hui
+        let days = []; // Tableau des jours à afficher dans le calendrier
+        let eventsForSelectedDay = writable([]); // Store qui contient les événements du jour sélectionné
+        let filteredEvents = writable([]); // Store pour les événements filtrés
+        let dataLoaded = writable(false); // Indicateur si les données ont été chargées
+        let eventsByCategory = writable({}); // Store pour compter les événements par catégorie
 
         function loadDays(date) {
+                // Récupère l'année et le mois de la date actuelle
+
                 const year = date.getFullYear();
                 const month = date.getMonth();
+                // Obtenez le premier et dernier jour du mois
                 const firstDayOfMonth = new Date(year, month, 1);
                 const lastDayOfMonth = new Date(year, month + 1, 0);
+                // Détermine quel jour de la semaine est le premier et dernier jour du mois
+
                 const startDay = firstDayOfMonth.getDay() === 0 ? 6 : firstDayOfMonth.getDay() - 1;
                 const endDay = lastDayOfMonth.getDay() === 0 ? 6 : lastDayOfMonth.getDay() - 1;
+                // Vide le tableau `days` à chaque appel
 
                 days = [];
-
+                // Ajoute les jours du mois précédent pour aligner le calendrier
                 for (let i = startDay; i > 0; i--) {
                         days.push(new Date(year, month, 1 - i));
                 }
+                // Ajoute les jours du mois courant
 
                 for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
                         days.push(new Date(year, month, i));
                 }
+                // Ajoute les jours du mois suivant pour compléter la semaine
 
                 for (let i = 1; i < 7 - endDay; i++) {
                         days.push(new Date(year, month + 1, i));
@@ -137,72 +50,75 @@
         }
 
         function handleDayClick(day) {
-                const adjustedDay = adjustForTimezone(day);
-                selectedDate.set(adjustedDay);
-                const selectedDateISO = adjustedDay.toISOString().slice(0, 10);
-                const events = get(jsonDataByDate)[selectedDateISO] || [];
-                eventsForSelectedDay.set(events);
+                const adjustedDay = adjustForTimezone(day); // Ajuste la date pour tenir compte du fuseau horaire
+                selectedDate.set(adjustedDay); // Met à jour la date sélectionnée
+                const selectedDateISO = adjustedDay.toISOString().slice(0, 10); // Formate la date en ISO (YYYY-MM-DD)
+                const events = get(jsonDataByDate)[selectedDateISO] || []; // Récupère les événements de cette date à partir du store
+                eventsForSelectedDay.set(events); // Met à jour les événements du jour sélectionné
         }
 
         function goToNextMonth() {
-                const date = get(currentDate);
-                date.setMonth(date.getMonth() + 1);
-                currentDate.set(new Date(date));
-                loadDays(date);
+                const date = get(currentDate); // Récupère la date actuelle
+                date.setMonth(date.getMonth() + 1); // Passe au mois suivant
+                currentDate.set(new Date(date)); // Met à jour la date actuelle dans le store
+                loadDays(date); // Recharge les jours pour le nouveau mois
         }
 
         function goToPreviousMonth() {
-                const date = get(currentDate);
-                date.setMonth(date.getMonth() - 1);
-                currentDate.set(new Date(date));
-                loadDays(date);
+                const date = get(currentDate); // Récupère la date actuelle
+                date.setMonth(date.getMonth() - 1); // Passe au mois précédent
+                currentDate.set(new Date(date)); // Met à jour la date actuelle dans le store
+                loadDays(date); // Recharge les jours pour le nouveau mois
         }
 
+        //fonction pour ajuster la date en fonction du fuseau horaire
         function adjustForTimezone(date) {
-                const adjustedDate = new Date(date);
-                adjustedDate.setHours(adjustedDate.getHours() - adjustedDate.getTimezoneOffset() / 60);
-                return adjustedDate;
+                const adjustedDate = new Date(date); // Crée une nouvelle date
+                adjustedDate.setHours(adjustedDate.getHours() - adjustedDate.getTimezoneOffset() / 60); // Ajuste l'heure en fonction du fuseau horaire
+                return adjustedDate; // Retourne la date ajustée
         }
 
         function countEventsByCategory(events) {
-                const categoryCount = {};
+                const categoryCount = {}; // Initialise un objet pour stocker le nombre d'événements par catégorie
                 events.forEach((event) => {
                         if (categoryCount[event.type]) {
-                                categoryCount[event.type]++;
+                                categoryCount[event.type]++; // Incrémente si la catégorie existe déjà
                         } else {
-                                categoryCount[event.type] = 1;
+                                categoryCount[event.type] = 1; // Initialise le compte si la catégorie n'existe pas encore
                         }
                 });
-                eventsByCategory.set(categoryCount);
+                eventsByCategory.set(categoryCount); // Met à jour le store avec le compte des catégories
         }
 
         onMount(() => {
-                loadDays(get(currentDate));
-
+                loadDays(get(currentDate)); // Charge les jours pour le mois actuel au moment du montage du composant
+                // S'abonne aux changements dans `jsonDataByDate`
                 const unsubscribe = jsonDataByDate.subscribe((data) => {
                         if (Object.keys(data).length > 0) {
-                                const todayISO = today.toISOString().slice(0, 10);
-                                const initialEvents = data[todayISO] || [];
-                                eventsForSelectedDay.set(initialEvents);
-                                filteredEvents.set(initialEvents);
-                                countEventsByCategory(initialEvents);
-                                dataLoaded.set(true);
-                                unsubscribe();
+                                const todayISO = today.toISOString().slice(0, 10); // Date d'aujourd'hui au format ISO
+                                const initialEvents = data[todayISO] || []; // Récupère les événements d'aujourd'hui
+                                eventsForSelectedDay.set(initialEvents); // Met à jour les événements pour aujourd'hui
+                                filteredEvents.set(initialEvents); // Met à jour les événements filtrés
+                                countEventsByCategory(initialEvents); // Met à jour le compteur des catégories
+                                dataLoaded.set(true); // Indique que les données ont été chargées
+                                unsubscribe(); // Désabonne une fois que les données ont été chargées
                         }
                 });
         });
 
         $: if (dataLoaded) {
                 selectedDate.subscribe((date) => {
-                        const selectedDateISO = date.toISOString().slice(0, 10);
-                        const events = get(jsonDataByDate)[selectedDateISO] || [];
-                        eventsForSelectedDay.set(events);
-                        filteredEvents.set(events);
-                        countEventsByCategory(events); // Mettre à jour le compteur de catégories
+                        const selectedDateISO = date.toISOString().slice(0, 10); // Formate la date sélectionnée en ISO
+                        const events = get(jsonDataByDate)[selectedDateISO] || []; // Récupère les événements pour cette date
+                        console.log(events);
+                        eventsForSelectedDay.set(events); // Met à jour les événements pour ce jour
+                        filteredEvents.set(events); // Met à jour les événements filtrés
+                        countEventsByCategory(events); // Met à jour le compteur des catégories
                 });
         }
 </script>
 
+<!-- wrapper de selection du mois -->
 <div class="wrapper-month-display">
         <button class="button-mont-select" on:click={goToPreviousMonth}><i class="fa-solid fa-angle-left"></i></button>
         <p class="currentMonth">
@@ -212,12 +128,14 @@
 </div>
 <Filter jsonDataByDate={$jsonDataByDate} {startDate} {endDate} {type} {filterLieu} bind:filteredEvents />
 
+<!-- boucle pour les jours de la semaine -->
 {#if $dataLoaded}
         <div class="calendar">
                 {#each ["L", "M", "M", "J", "V", "S", "D"] as day}
                         <p class="days-of-week">{day}</p>
                 {/each}
 
+                <!-- boucle pour les jours du mois -->
                 {#each days as day}
                         <button
                                 class="day
@@ -232,6 +150,7 @@
                 {/each}
         </div>
 
+        <!-- obtenir les événements par catégorie -->
         <div class="category-list">
                 <h3>Événements par catégorie :</h3>
                 {#each Object.entries($eventsByCategory) as [category, count]}
@@ -347,7 +266,6 @@
                 color: var(--primary);
                 font-weight: 200;
                 font-size: 0.7rem;
-             
         }
         .days-of-week:nth-child(7n + 6),
         .days-of-week:nth-child(7n + 7) {
