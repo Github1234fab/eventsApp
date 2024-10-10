@@ -1,5 +1,6 @@
 <script>
         import Filter from "../components/Filter.svelte";
+        import Card from "../components/Card.svelte";
         import { onMount } from "svelte";
         import { jsonDataByDate, selectedDate } from "../lib/store.js";
         import { writable, get } from "svelte/store"; // Import de `writable` pour créer des stores réactifs, et de `get` pour accéder aux valeurs des stores
@@ -18,6 +19,9 @@
         let dataLoaded = writable(false); // Indicateur si les données ont été chargées
         let eventsByCategory = writable({}); // Store pour compter les événements par catégorie
 
+        console.log($filteredEvents);
+
+        // *********************** CALENDRIER
         function loadDays(date) {
                 // Récupère l'année et le mois de la date actuelle
 
@@ -54,6 +58,8 @@
                 selectedDate.set(adjustedDay); // Met à jour la date sélectionnée
                 const selectedDateISO = adjustedDay.toISOString().slice(0, 10); // Formate la date en ISO (YYYY-MM-DD)
                 const events = get(jsonDataByDate)[selectedDateISO] || []; // Récupère les événements de cette date à partir du store
+                   console.log("Selected day:", selectedDateISO); // Ajout pour debugger
+    console.log("Events for this day:", events); // Ajout pour debugger
                 eventsForSelectedDay.set(events); // Met à jour les événements du jour sélectionné
         }
 
@@ -77,6 +83,8 @@
                 adjustedDate.setHours(adjustedDate.getHours() - adjustedDate.getTimezoneOffset() / 60); // Ajuste l'heure en fonction du fuseau horaire
                 return adjustedDate; // Retourne la date ajustée
         }
+
+        // *********************** CALENDRIER
 
         function countEventsByCategory(events) {
                 const categoryCount = {}; // Initialise un objet pour stocker le nombre d'événements par catégorie
@@ -151,29 +159,32 @@
         </div>
 
         <!-- obtenir les événements par catégorie -->
-        <div class="category-list">
+        <!-- <div class="category-list">
                 <h3>Événements par catégorie :</h3>
                 {#each Object.entries($eventsByCategory) as [category, count]}
                         <button on:click={() => filterByCategory(category)}>
                                 {category}: {count} événement(s)
                         </button>
                 {/each}
-        </div>
+        </div> -->
 
         <!-- Interface utilisateur pour les filtres   -->
         <div class="event-info">
                 <div class="wrapper-collapse">
-                        {#each $filteredEvents as event}
+                        <!-- {#each $filteredEvents as event}
                                 <Collapse annonceur={event.annonceur} date={event.date} lieu={event.lieu} tarif={event.tarif} fin={event.fin} début={event.début} type={event.type} />
+                        {/each} -->
+                        {#each $filteredEvents as event}
+                                <Card catégorie={event.catégorie} titre={event.titre} description={event.description} date={event.date} début={event.début} fin={event.fin} tarif={event.tarif} lieu={event.lieu} image={event.image} lien={event.lien} />
                         {/each}
                 </div>
                 <p class="current-date-display">
-                        <!-- Date selectionnée: {$selectedDate.toISOString().slice(0, 10)} -->
+                        Date selectionnée: {$selectedDate.toISOString().slice(0, 10)}
                 </p>
-                <!-- <p class="number-events">{$filteredEvents.length} événement(s) prévu(s) pour cette date.</p> -->
+                <p class="number-events">{$filteredEvents.length} événement(s) prévu(s) pour cette date.</p>
         </div>
 {:else}
-        <!-- <p>Chargement des données...</p> -->
+        <p>Chargement des données...</p>
 {/if}
 
 <style>

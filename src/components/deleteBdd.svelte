@@ -56,8 +56,7 @@ service cloud.firestore {
     }
   }
 }
- -->
-<!-- 
+ 
  sinon, écrire cette règle:
 
 

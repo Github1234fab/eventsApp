@@ -2,29 +2,39 @@
         import { writable } from "svelte/store";
         import { slide } from "svelte/transition";
 
-        export let jsonDataByDate;
+        export let jsonDataByDate; // Store contenant tous les événements
         export let startDate = "";
         export let endDate = "";
         export let filterLieu = "";
-        export let type = ""; // Champ pour le type d'évènement
-        export let filteredEvents = writable([]);
+        export let type = ""; // Champ pour le type d'événement
+        export let filteredEvents = writable([]); // Événements filtrés
+        let allEvents = writable([]); // Store pour tous les événements
 
         let OpenFilter = false;
         let showInputs = true;
+
         function toggleFilter() {
                 OpenFilter = !OpenFilter;
                 if (!OpenFilter) {
-                        // Quand on ouvre le filtre, on réinitialise showInputs à true
+                        // Réinitialise l'affichage des champs de filtre
                         showInputs = true;
                 }
         }
 
-        //     function removeWrapper() {
-        //         showInputs = false;  // Cacher le wrapper-inputs
-        //     }
-
+        // Types d'événements disponibles
         const types = ["brocante", "foire", "fêtes", "café philo", "concert", "conférence", "concours photo", "lecture contes"];
 
+        // Fonction pour afficher tous les événements au démarrage
+        function loadAllEvents() {
+                let events = [];
+                for (const [date, eventList] of Object.entries(jsonDataByDate)) {
+                        events = events.concat(eventList);
+                }
+                allEvents.set(events); // Mettre à jour le store avec tous les événements
+                filteredEvents.set(events); // Initialement, pas de filtre, donc tous les événements s'affichent
+        }
+
+        // Fonction pour appliquer le filtre en fonction des critères de l'utilisateur
         function applyFilter() {
                 let filtered = [];
                 const start = startDate ? new Date(startDate) : null;
@@ -46,9 +56,10 @@
                         });
                 }
 
-                filteredEvents.set(filtered);
+                filteredEvents.set(filtered); // Mettre à jour avec les événements filtrés
         }
 
+        // Réinitialise les filtres
         function resetFilters() {
                 startDate = "";
                 endDate = "";
@@ -56,9 +67,13 @@
                 type = "";
                 applyFilter(); // Réapplique le filtre avec les valeurs réinitialisées
         }
+
+        // Charger tous les événements lors du chargement du composant
+        loadAllEvents();
 </script>
 
 <section>
+        <!-- Bouton pour ouvrir/fermer le filtre -->
         <button class="setUp-button" on:click={toggleFilter}><i class="fa-solid fa-sliders"></i></button>
 
         {#if OpenFilter && showInputs}
@@ -95,12 +110,24 @@
                                 </label>
                         </div>
                         <div class="wrapper-buttons-apply">
-                                <button class="buttons-apply" on:click={resetFilters}>Réintialiser</button>
-                                <button class="buttons-apply apply" on:click={applyFilter}>Appliquer </button>
+                                <button class="buttons-apply" on:click={resetFilters}>Réinitialiser</button>
+                                <button class="buttons-apply apply" on:click={applyFilter}>Appliquer</button>
                         </div>
                 </div>
         {/if}
+
+        <!-- Affichage des événements -->
+        <div class="events-list">
+                {#each $filteredEvents as event}
+                        <div class="event">
+                                <h3>{event.annonceur}</h3>
+                                <p>{event.lieu} - {event.date}</p>
+                                <p>Type : {event.type}</p>
+                        </div>
+                {/each}
+        </div>
 </section>
+
 
 <style>
         section {
@@ -177,13 +204,13 @@
                 background-color: var(--whiteGrey);
         }
         .setUp-button {
-                color: var(--primary);
+                color: var(--cta2);
                 padding: 10px 15px;
                 border-radius: 8px;
                 border: none;
                 background-color: transparent;
                 font-weight: 800;
-                font-size: 1.3rem;
+                font-size: 3rem;
                 cursor: pointer;
                 transition: 0.3s ease-in-out;
         }

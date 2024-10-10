@@ -1,5 +1,5 @@
 <script>
-        import Flèche from "../assets/radarB.png";
+        import Flèche from "../assets/montagne.png";
         import svgMenu from "../assets/svg-menu.svg";
         import { slide } from "svelte/transition";
         let menuVisible = false;
@@ -14,7 +14,7 @@
         <div class="wrapper-header">
                 <a href="/">
                 <img class="logo" src={Flèche} alt="Logo" /></a>
-                <!-- <h1></h1> -->
+                <h1>monMove</h1>
 <SuscriptionButton/>
                 <button on:click={openCloseMenu}>
                         <img class="svg-menu" src={svgMenu} alt="Menu" />
@@ -38,7 +38,7 @@
 <style>
         header {
                 padding: 10px;
-                background-color:var(--cta);
+                background-color:var(--whiteGrey);
         }
         .menu-container {
                 display: flex;
@@ -65,7 +65,7 @@
         }
 
         .logo {
-                height: 50px; /* Ajustez la taille de l'image */
+                height: 100px; /* Ajustez la taille de l'image */
         }
 
         .svg-menu {
@@ -83,11 +83,12 @@
                 background-color: rgb(211, 211, 213);
         }
 
-        /* h1 {
-                font-size: 0.9rem;
+        h1 {
+                font-size: 2.9rem;
                 padding: 10px;
                 font-weight: 500;
-        } */
+                text-transform: capitalize;
+        }
         a {
                 text-decoration: none;
                 color: #c71585;

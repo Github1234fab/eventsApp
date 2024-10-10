@@ -1,26 +1,29 @@
 <script>
-        export let annonceur;
+        export let image;
+        export let catégorie;
+        export let titre;
+        export let description;
         export let date;
         export let début;
         export let fin;
-        export let lieu;
         export let tarif;
-        export let img;
-
-        // export let type;
+        export let lien;
+        export let lieu;
 </script>
 
 <div class="card">
-        <!-- <h2>{type}</h2> -->
-             <img src={img} alt="">
-        <p class="p">Date: {date}</p>
-        <p class="p">Horaire début: {début}</p>
-        <p class="p">Horaire fin: {fin}</p>
-        <p class="p">Tarif: {tarif}</p>
-        <p class="p">Lieu: {lieu}</p>
-        <p class="p">debut: {début}</p>
-        <p class="p">Annonceur: {annonceur}</p>
-    
+        <img src={image} alt="" />
+        <div class="wrapper-infos">
+                <p class="cat">{catégorie}</p>
+                <p class="title">{titre}</p>
+                <p class="p">{description}</p>
+                <p class="date">{date}</p>
+                <p class="p">Horaire début: {début}</p>
+                <p class="p">Horaire fin: {fin}</p>
+                <p class="p">Tarif: {tarif}</p>
+                <p class="p">Lieu: {lieu}</p>
+                <a href={lien} target="_blank">informations/réservation</a>
+        </div>
 </div>
 
 <style>
@@ -29,27 +32,55 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 10px;
+                padding: 0px;
+                border-bottom: 1px solid var(--secondary);
+                margin-top: 5px;
+                /* box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%); */
+        }
+        .wrapper-infos {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                padding: 10px;
+
+                /* box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%); */
+        }
+
+        img {
+                width: 300px;
+                height: 300px;
+                border-radius: 0px;
+        }
+
+        .cat {
+                font-size: 2em;
+                font-weight: 400;
+                color: red;
+                text-transform: uppercase;
+        }
+
+        .title {
+                font-size: 1.5em;
+                font-weight: 700;
+        }
+
+        .date {
+                font-size: 1em;
+                text-transform: uppercase;
+        }
+        a {
+                background-color: var(--transparent);
+                color: var(--secondary);
                 padding: 10px;
                 border-radius: 10px;
-                box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%);
-                max-width: 50%;
+                cursor: pointer;
+                border: 1px solid var(--secondary);
+                margin-top: 10px;
+                margin-bottom: 10px;
         }
-        
-         img {
-                width: 100%;
-                height: 200px;
-                border-radius: 10px;
-        } 
-
-        /* h1 {
-                font-size: 1.5em;
-        } */
-
-        /* h2 {
-                font-size: 1.2em;
-        } */
-
-        /* h4 {
-                font-size: 1em;
-        } */
+        a:hover {
+                background-color: var(--secondary);
+                color: var(--whiteGrey);
+        }
 </style>
