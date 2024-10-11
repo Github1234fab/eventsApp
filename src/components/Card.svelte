@@ -17,7 +17,7 @@
                 <p class="cat">{catégorie}</p>
                 <p class="title">{titre}</p>
                 <p class="p">{description}</p>
-                <p class="date">{date}</p>
+                <p>Date : {new Date(date).toLocaleDateString("fr-FR")}</p>
                 <p class="p">Horaire début: {début}</p>
                 <p class="p">Horaire fin: {fin}</p>
                 <p class="p">Tarif: {tarif}</p>
