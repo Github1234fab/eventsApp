@@ -33,7 +33,7 @@
                 align-items: center;
                 gap: 10px;
                 padding: 10px;
-                border-bottom: 1px solid var(--secondary);
+                border-bottom: 1px solid rgb(190, 190, 190);
                 background-color: white;
                 /* box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%); */
         }

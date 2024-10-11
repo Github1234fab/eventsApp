@@ -37,10 +37,11 @@
 <style>
         header {
                 padding: 0px;
-                background-color: var(--whiteGrey);
-                max-height: 80px;
+                background-color: rgb(249, 241, 242);
+                max-height: 100px;
                 position: fixed;
                 width: 100%;
+                padding: 10px;
         }
         .menu-container {
                 display: flex;
@@ -69,6 +70,7 @@
 
         .logo {
                 height: 60px; /* Ajustez la taille de l'image */
+                margin-left: -6px;
         }
 
         .svg-menu {
@@ -92,7 +94,7 @@
                 font-weight: 500;
                 text-transform: capitalize;
                 font-family: "Bebas Neue";
-                margin-left: 5px;
+                margin-left: 0px;
         }
         a {
                 text-decoration: none;

@@ -185,6 +185,9 @@
         </select>
         <button on:click={resetFilters}>Réinitialiser les filtres</button>
 </div>
+<div class="wrapper-title-programme">
+        <h2 class="programme">AGENDA</h2>
+</div>
 
 <!-- Afficher les cartes d'événements (avec ou sans filtres) -->
 <div class="wrapper-cards">
@@ -199,9 +202,8 @@
                 justify-content: first baseline;
                 flex-wrap: wrap;
                 position: fixed;
-                background-color: whitesmoke;
-                margin-top: -150px;
- 
+                background-color: #ccc;
+                margin-top: -165px;
         }
         select {
                 padding: 5px 10px;
@@ -216,11 +218,26 @@
                 border: 1px solid #ccc;
                 background-color: #e3d2d2;
         }
-        .wrapper-cards {
+        .wrapper-title-programme {
                 display: flex;
-        flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                margin-top: 200px;
+                position: fixed;
+                margin-top: -59px;
+                background-color:  #ccbfbf;
+                min-height: 50px;
+                min-width: 100%;
+        }
+        .programme {
+                font-family: "ROBOTO", sans-serif;
+                text-align: center;
+                font-weight: 400;
+        }
+        .wrapper-cards {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 240px;
         }
 </style>
