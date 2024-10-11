@@ -1,5 +1,5 @@
 <script>
-        import Flèche from "../assets/montagne.png";
+        import Flèche from "../assets/montagne2.png";
         import svgMenu from "../assets/svg-menu.svg";
         import { slide } from "svelte/transition";
         let menuVisible = false;
@@ -12,10 +12,9 @@
 
 <header>
         <div class="wrapper-header">
-                <a href="/">
-                <img class="logo" src={Flèche} alt="Logo" /></a>
-                <h1>monMove</h1>
-<SuscriptionButton/>
+                <h1>C mon coin</h1>
+                <a href="/"> <img class="logo" src={Flèche} alt="Logo" /></a>
+                <SuscriptionButton />
                 <button on:click={openCloseMenu}>
                         <img class="svg-menu" src={svgMenu} alt="Menu" />
                 </button>
@@ -37,13 +36,17 @@
 
 <style>
         header {
-                padding: 10px;
-                background-color:var(--whiteGrey);
+                padding: 0px;
+                background-color: var(--whiteGrey);
+                max-height: 80px;
+                position: fixed;
+                width: 100%;
         }
         .menu-container {
                 display: flex;
+                align-items: center;
                 justify-content: center;
-                width: 100%;                
+                width: 100%;
                 padding: 10px;
         }
 
@@ -65,7 +68,7 @@
         }
 
         .logo {
-                height: 100px; /* Ajustez la taille de l'image */
+                height: 60px; /* Ajustez la taille de l'image */
         }
 
         .svg-menu {
@@ -88,6 +91,8 @@
                 padding: 10px;
                 font-weight: 500;
                 text-transform: capitalize;
+                font-family: "Bebas Neue";
+                margin-left: 5px;
         }
         a {
                 text-decoration: none;
@@ -95,5 +100,11 @@
         }
         a:hover {
                 color: #00bfff;
+        }
+
+        @media screen and (max-width: 768px) {
+                .logo {
+                        height: 40px;
+                }
         }
 </style>
