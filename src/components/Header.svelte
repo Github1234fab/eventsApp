@@ -1,5 +1,5 @@
 <script>
-        import Flèche from "../assets/montagne2.png";
+        import Flèche from "../assets/montagne.png";
         import svgMenu from "../assets/svg-menu.svg";
         import { slide } from "svelte/transition";
         let menuVisible = false;
@@ -8,16 +8,111 @@
         function openCloseMenu() {
                 menuVisible = !menuVisible;
         }
+
+        import { writable } from "svelte/store";
+
+        export let filterLieu = writable("");
+        export let filterCategory = writable("");
+        export let filterDate = writable("");
+
+        const lieux = [
+                "Aveize",
+                "Beauvallon",
+                "Brindas",
+                "Brignais",
+                "Brullioles",
+                "Brussieu",
+                "Chabanière",
+                "Chambost Longessaigne",
+                "Chapelle sur Coise, La",
+                "Châtelus",
+                "Chaussan",
+                "Chevrières",
+                "Coise",
+                "Craponne",
+                "Duerne",
+                "Grammond",
+                "Grézieu le Marché",
+                "Haute Rivoire",
+                "Larajasse",
+                "Les Halles",
+                "Longessaigne",
+                "Maringes",
+                "Messimy",
+                "Meys",
+                "Montromant",
+                "Montrottier",
+                "Mornant",
+                "Orliénas",
+                "Pomeys",
+                "Pollionnay",
+                "Riverie",
+                "Rontalon",
+                "Saint André la Côte",
+                "Saint Clément les Places",
+                "Saint Denis sur Coise",
+                "Saint Genis l’Argentière",
+                "Saint Laurent de Chamousset",
+                "Saint Laurent d'Agny",
+                "Saint Martin en Haut",
+                "Saint Symphorien sur Coise",
+                "Sainte Catherine",
+                "Sainte Consorce",
+                "Sainte Foy l’Argentière",
+                "Soucieu-en-Jarrest",
+                "Souzy",
+                "Taluyers",
+                "Thurins",
+                "Vaugneray",
+                "Villechenève",
+                "Viricelles",
+                "Virigneux",
+                "Yzeron",
+        ];
+
+        const categories = ["Cinema", "Musées et visites", "Loisirs et jeux", "Fête", "Atelier", "Activité sportive", "Baignade", "Cours et stages", "Balades", "Parcs", "Resto et goûter", "Brocante et foire", "Concert", "Conférence", "Concours", "Lecture", "Enfant", "Sortie", "Exposition", "Sports", "Culture"];
+
+        const datesOptions = ["Aujourd'hui", "Cette semaine", "Ce week-end", "Ce mois-ci"];
+
+        // Fonction pour réinitialiser les filtres
+        function resetFilters() {
+                filterLieu.set("");
+                filterCategory.set("");
+                filterDate.set("");
+        }
 </script>
 
 <header>
         <div class="wrapper-header">
-                <h1>C mon coin</h1>
-                <a href="/"> <img class="logo" src={Flèche} alt="Logo" /></a>
+                <a href="/"><h1>C mon coin</h1></a>
+                <img class="logo" src={Flèche} alt="Logo" />
                 <SuscriptionButton />
                 <button on:click={openCloseMenu}>
                         <img class="svg-menu" src={svgMenu} alt="Menu" />
                 </button>
+        </div>
+        <div class="filter-controls">
+                <select bind:value={$filterLieu}>
+                        <option value="">Ou ?</option>
+                        {#each lieux as lieu}
+                                <option value={lieu}>{lieu}</option>
+                        {/each}
+                </select>
+
+                <select bind:value={$filterCategory}>
+                        <option value="">Quoi ?</option>
+                        {#each categories as category}
+                                <option value={category}>{category}</option>
+                        {/each}
+                </select>
+
+                <select bind:value={$filterDate}>
+                        <option value="">Quand ?</option>
+                        {#each datesOptions as dateOption}
+                                <option value={dateOption}>{dateOption}</option>
+                        {/each}
+                </select>
+                <button on:click={resetFilters}>Réinitialiser les filtres</button>
         </div>
 </header>
 
@@ -39,9 +134,8 @@
                 padding: 0px;
                 background-color: rgb(249, 241, 242);
                 max-height: 100px;
-                position: fixed;
                 width: 100%;
-                padding: 10px;
+
         }
         .menu-container {
                 display: flex;
@@ -69,8 +163,8 @@
         }
 
         .logo {
-                height: 60px; /* Ajustez la taille de l'image */
-                margin-left: -6px;
+                height: 100px; /* Ajustez la taille de l'image */
+   
         }
 
         .svg-menu {
@@ -98,15 +192,34 @@
         }
         a {
                 text-decoration: none;
-                color: #c71585;
+                color: #181818;
         }
         a:hover {
                 color: #00bfff;
         }
+        .filter-controls {
+                display: flex;
+                justify-content: first baseline;
+                flex-wrap: wrap;
+                background-color: #ccc;
+        }
+        select {
+                padding: 5px 10px;
+                margin: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+        }
+        button {
+                padding: 10px;
+                margin: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                background-color: #e3d2d2;
+        }
 
         @media screen and (max-width: 768px) {
                 .logo {
-                        height: 40px;
+                        height: 70px;
                 }
         }
 </style>

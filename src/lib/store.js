@@ -24,3 +24,8 @@ export const bonjour = writable([
                 age: 25,
         },
 ]);
+
+// Créer des stores pour chaque filtre
+export const filterLieu = writable("");
+export const filterCategory = writable("");
+export const filterDate = writable("");
