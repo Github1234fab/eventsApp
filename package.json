@@ -16,6 +16,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"firebase": "^10.14.0"
+		"firebase": "^10.14.0",
+		"svelte-routing": "^2.13.0"
 	}
 }

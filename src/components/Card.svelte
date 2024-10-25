@@ -9,22 +9,22 @@
         export let tarif;
         export let lien;
         export let lieu;
+        export let id;
 </script>
 
-<div class="card">
+<a href={`/event/${id}`} class="card">
         <img src={image} alt="" />
-        <div class="wrapper-infos">
-                <p class="cat">{catégorie}</p>
-                <p class="title">{titre}</p>
-                <p class="p">{description}</p>
-                <p class="date">Date : {new Date(date).toLocaleDateString("fr-FR")}</p>
-                <p class="p">Horaire début: {début}</p>
-                <p class="p">Horaire fin: {fin}</p>
-                <p class="p">Tarif: {tarif}</p>
-                <p class="p">Lieu: {lieu}</p>
-                <a href={lien} target="_blank">informations/réservation</a>
-        </div>
-</div>
+        <p class="id">{id}</p>
+        <p class="cat">{catégorie}</p>
+        <p class="title">{titre}</p>
+        <p class="p">{description}</p>
+        <p class="date">Date : {new Date(date).toLocaleDateString("fr-FR")}</p>
+        <p class="p">Horaire début: {début}</p>
+        <p class="p">Horaire fin: {fin}</p>
+        <p class="p">Tarif: {tarif}</p>
+        <p class="p">Lieu: {lieu}</p>
+        <a href={lien} target="_blank">informations/réservation</a>
+</a>
 
 <style>
         .card {
@@ -35,18 +35,11 @@
                 padding: 10px;
                 border-bottom: 1px solid rgb(190, 190, 190);
                 background-color: white;
-                /* box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%); */
+                border: none;
         }
-        .wrapper-infos {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 5px;
-                padding: 10px;
-
-                /* box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%); */
+        .id {
+                display: none;
         }
-
         img {
                 width: 90%;
                 height: 100%;
@@ -79,27 +72,27 @@
                 border: 1px solid var(--secondary);
                 margin-top: 10px;
                 margin-bottom: 10px;
+                text-decoration: none;
         }
         a:hover {
                 background-color: var(--secondary);
                 color: var(--whiteGrey);
         }
 
-    @media screen and (min-width: 768px) {
-          .card {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-                padding: 10px;
-                border-bottom: 1px solid var(--secondary);
-                background-color: white;
-                max-width: 50%;
-
+        @media screen and (min-width: 768px) {
+                .card {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 10px;
+                        border-bottom: 1px solid var(--secondary);
+                        background-color: white;
+                        max-width: 50%;
+                }
+                img {
+                        width: 80%;
+                        border-radius: 0px;
+                }
         }
-        img {
-            width: 80%;
-            border-radius: 0px;
-        }
-    }
 </style>

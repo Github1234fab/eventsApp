@@ -84,7 +84,7 @@
 
 <header>
         <div class="wrapper-header">
-                <a href="/"><h1>C mon coin</h1></a>
+                <a href="/"><h1>...</h1></a>
                 <img class="logo" src={Flèche} alt="Logo" />
                 <SuscriptionButton />
                 <button on:click={openCloseMenu}>
@@ -112,7 +112,7 @@
                                 <option value={dateOption}>{dateOption}</option>
                         {/each}
                 </select>
-                <button on:click={resetFilters}>Réinitialiser les filtres</button>
+                <button class="reset-filter" on:click={resetFilters}>Réinitialiser les filtres</button>
         </div>
 </header>
 
@@ -121,7 +121,7 @@
         {#if menuVisible}
                 <div class="menu" transition:slide={{ duration: 1200 }}>
                         <a href="/Advertisement">Commerces</a>
-                        <a href="/publicité">Publicité</a>
+                        <a href="/event">Publicité</a>
                         <!-- <a href="/jsonImport">Diffusion</a> -->
                         <a href="/">Contact</a>
                         <!-- Ajoutez d'autres éléments de menu ici -->
@@ -135,6 +135,7 @@
                 background-color: rgb(249, 241, 242);
                 max-height: 100px;
                 width: 100%;
+                position: fixed;
 
         }
         .menu-container {
@@ -215,6 +216,10 @@
                 border-radius: 5px;
                 border: 1px solid #ccc;
                 background-color: #e3d2d2;
+        }
+        .reset-filter{
+                box-shadow: 0px 0px 10px grey;
+               
         }
 
         @media screen and (max-width: 768px) {
