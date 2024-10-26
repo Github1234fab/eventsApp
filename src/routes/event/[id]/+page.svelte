@@ -5,6 +5,4 @@
   
 </script>
 
-<h1>kshdbvkzhbvkfhbv</h1>
-
 <EventDetail />

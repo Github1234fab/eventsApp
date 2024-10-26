@@ -136,7 +136,6 @@
                 max-height: 100px;
                 width: 100%;
                 position: fixed;
-
         }
         .menu-container {
                 display: flex;
@@ -165,7 +164,6 @@
 
         .logo {
                 height: 100px; /* Ajustez la taille de l'image */
-   
         }
 
         .svg-menu {
@@ -217,14 +215,13 @@
                 border: 1px solid #ccc;
                 background-color: #e3d2d2;
         }
-        .reset-filter{
+        .reset-filter {
                 box-shadow: 0px 0px 10px grey;
-               
         }
 
         @media screen and (max-width: 768px) {
                 .logo {
-                        height: 70px;
+                        height: 100px;
                 }
         }
 </style>
