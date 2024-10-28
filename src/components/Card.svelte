@@ -12,8 +12,9 @@
         export let id;
 </script>
 
-<a href={`/event/${id}`} class="card">
+<div class="card">
         <img src={image} alt="" />
+        <a class = "info-button" href={`/event/${id}`}>i</a>
         <p class="date">{new Date(date).toLocaleDateString("fr-FR")}</p>
         <p class="id">{id}</p>
         <p class="cat">{catégorie}</p>
@@ -26,7 +27,7 @@
                 <p class="p">Tarif: {tarif}</p>
         </div>
         <a class="informations" href={lien} target="_blank">informations/réservation</a>
-</a>
+</div>
 
 <style>
         .card {
@@ -35,10 +36,23 @@
                 align-items: center;
                 gap: 10px;
                 padding: 10px;
+                border-radius: 8px;
                 background-color: white;
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
+        }
+        .info-button{
+                min-height: 30px;
+                min-width: 30px;
+                border-radius: 50%;
+                background-color: var(--ardoise);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-decoration: none;
+                font-family: 'Times New Roman';
         }
         .id {
                 display: none;
@@ -50,7 +64,7 @@
         }
         .lieu {
                 font-size: 1em;
-                font-weight: 400;
+                font-weight: 600;
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
                 margin-top: -10px;
@@ -72,12 +86,13 @@
 
         .title {
                 font-size: 1rem;
-                font-weight: 600;
+                font-weight: 500;
                 letter-spacing: -0.9px;
+                color: var(--ardoise);
         }
 
         .date {
-                font-size: 1em;
+                font-size: 1.5em;
                 text-transform: uppercase;
                 font-weight: 900;
                 background-color: white;
@@ -95,12 +110,12 @@
         }
         .p {
                 font-size: 0.9em;
-                font-weight: 200;
+                font-weight: 400;
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
         }
-        .informations{
-                background-color: var(--ardoise);
+        .informations {
+                background-color: var(--blue);
                 color: var(--whiteGrey);
                 padding: 8px 13px;
                 border-radius: 8px;
@@ -109,13 +124,13 @@
                 margin-top: 10px;
                 margin-bottom: 10px;
                 text-decoration: none;
-                font-size: 0.7rem;
+                font-size: 1rem;
                 text-transform: capitalize;
                 font-family: Inter;
                 font-weight: 300;
         }
-      
-       .informations:hover {
+
+        .informations:hover {
                 background-color: var(--secondary);
                 color: var(--whiteGrey);
         }

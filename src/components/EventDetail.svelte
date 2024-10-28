@@ -71,19 +71,23 @@ END:VCALENDAR
 <Header />
 
 {#if event}
-        <div class="card">
-                <div class="wrapper-calendar">
-                        <button class="calendar" on:click={generateICS}>Fichier ICS</button>
-                        <a class="calendar" href={googleCalendarUrl} target="_blank">Google</a>
-                        <a class="calendar" href={outlookCalendarUrl} target="_blank">Outlook</a>
-                        <a class="calendar" href={yahooCalendarUrl} target="_blank">Yahoo</a>
-                </div>
- 
+        <div class="event-card">
         <img src={event.image} alt="" />
+                <p class="date">{event.date}</p>
         <p class="id">{event.id}</p>
         <p class="cat">{event.catégorie}</p>
         <p class="lieu">{event.lieu}</p>
-        <p class="date">{event.date}</p>
+
+           <div class="wrapper-calendar">
+                <p>Importer l'évènement dans votre calendrier</p>
+                <div class="wrapper-buttons-informations">
+                        <button class="calendar" on:click={generateICS}>ICS</button>
+                        <a class="calendar" href={googleCalendarUrl} target="_blank">Google</a>
+                        <a class="calendar" href={outlookCalendarUrl} target="_blank">Outlook</a>
+                        <a class="calendar" href={yahooCalendarUrl} target="_blank">Yahoo</a>
+                        </div>
+                </div>
+        
         <p class="title">{event.titre}</p>
         <p class="description">{event.description}</p>
         <div class="wrapper-horaire-tarif">
@@ -100,35 +104,44 @@ END:VCALENDAR
 {/if}
      
 <style>
-        .card {
+        .event-card {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 gap: 10px;
                 padding: 10px;
-                background-color: white;
+                background-color:  transparent;
                 border: none;
-                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
                 margin-top: 200px;
-                min-height: 100vh;
+                margin-bottom: 100px;
+                height: 100%;
         }
         .wrapper-calendar {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                gap: 20px;
+                justify-content: space-around;
+                gap: 10px;
                 margin-top: 20px;
+                border: none;
+                padding: 10px;
+                border-radius: 10px;
         }
+         .wrapper-calendar p {
+                font-size: 0.8rem;
+         }
         .calendar {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 background-color: rgb(103, 103, 240);
                 color: var(--whiteGrey);
-                padding: 10px;
                 text-align: center;
-                border-radius: 8px;
+                height: 40px;
+                width: 40px;
+                padding: 30px;
+                border-radius: 50%;
                 cursor: pointer;
                 margin-top: 10px;
                 margin-bottom: 10px;
@@ -136,8 +149,14 @@ END:VCALENDAR
                 font-size: 0.6rem;
                 text-transform: capitalize;
                 font-family: Inter;
-                font-weight: 500;
+                font-weight: 700;
                 border: none;
+                box-shadow: 0px 0px 10px rgb(174, 173, 173);
+        }
+        .wrapper-buttons-informations{
+                display:flex;
+                flex-direction: rows;
+                gap: 20px;
         }
         .id {
                 display: none;
@@ -156,7 +175,7 @@ END:VCALENDAR
         }
 
         .cat {
-                font-size: 1.5em;
+                font-size: 1.8em;
                 font-weight: 900;
                 color: var(--ardoise);
                 text-transform: uppercase;
@@ -176,12 +195,12 @@ END:VCALENDAR
         }
 
         .date {
-                font-size: 1em;
+                font-size: 2em;
                 text-transform: uppercase;
                 font-weight: 900;
-                background-color: white;
+                background-color: transparent;
                 color: rgb(212, 17, 17);
-                border: 1px solid grey;
+                border: none;
                 padding: 8px 12px;
                 border-radius: 5px;
         }
@@ -220,7 +239,7 @@ END:VCALENDAR
         }
 
         @media screen and (max-width: 768px) {
-                .card {
+                .event-card {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
