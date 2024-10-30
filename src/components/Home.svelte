@@ -73,15 +73,21 @@
         }
 </script>
 
+<div class="wrapper-header">
 <Header {filterLieu} {filterCategory} {filterDate} />
+</div>
 
 <div class="wrapper-cards">
         {#each filteredEvents as event}
-                <Card {...event} />
+                <!-- <Card {...event} /> -->
+                             <Card {...event}/>
         {/each}
 </div>
 
 <style>
+        .wrapper-header {
+             position: fixed;
+        }
         .wrapper-cards {
                 display: flex;
                 flex-direction: column;

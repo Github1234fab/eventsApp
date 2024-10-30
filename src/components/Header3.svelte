@@ -136,7 +136,6 @@
                 max-height: 100px;
                 width: 100%;
                 /* position: fixed; */
-                margin-top: -260px;
                 z-index: 0;
         }
         .menu-container {

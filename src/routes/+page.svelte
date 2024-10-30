@@ -1,8 +1,7 @@
 <script>
-        // import Calendar from "../components/Calendar.svelte";
-        // import Filter from "../components/Filter.svelte";
+
         import UpLoadJson from "../components/UpLoadJson.svelte";
-        import UpLoadJsonAdvertisement from "../components/UpLoadJsonAdvertisement.svelte";
+        import UpLoadJsonPub from "../components/UpLoadJsonPub.svelte";
         import Home from "../components/Home.svelte";
         import "../routes/styles.css";
 </script>
@@ -12,7 +11,8 @@
          <!-- <Filter /> -->
          <Home />
         <UpLoadJson />
-        <UpLoadJsonAdvertisement />
+        <UpLoadJsonPub />
+
 </main>
 
 <style>

@@ -1,33 +1,17 @@
 <script>
-        export let image;
-        export let catégorie;
-        export let titre;
-        export let description;
-        export let date;
-        // export let début;
-        // export let fin;
-        // export let tarif;
-        export let lien;
-        export let lieu;
-        export let id;
+        export let heading;
 </script>
 
 <div class="card">
-        <img src={image} alt="" />
-        <a class="info-button" href={`/event/${id}`}>i</a>
-        <p class="date">{new Date(date).toLocaleDateString("fr-FR")}</p>
-        <p class="id">{id}</p>
-        <p class="cat">{catégorie}</p>
-        <p class="lieu">{lieu}</p>
-        <p class="description">{description}</p>
-        <p class="title">"{titre}"</p>
-
-        <!-- <div class="wrapper-horaire-tarif">
-                <p class="p">Début: {début}</p>
-                <p class="p">Fin: {fin}</p>
-                <p class="p">Tarif: {tarif}</p>
-        </div> -->
-        <a class="informations" href={lien} target="_blank">informations/réservation</a>
+        <img class="image" src="https://images.pexels.com/photos/696205/pexels-photo-696205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+        <!-- <a class="info-button" href={`/event/${id}`}>i</a> -->
+        <p class="id">{heading.id}</p>
+        <p class="cat">{heading.catégorie}</p>
+        <p class="nom">{heading.nom}</p>
+        <p class="object">{heading.object}</p>
+        <p class="lieu">{heading.lieu}</p>
+        <p class="description">{heading.description}</p>
+        <a class="informations" href={heading.lien} target="_blank">informations/réservation</a>
 </div>
 
 <style>
@@ -43,7 +27,12 @@
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
         }
-        .info-button {
+        .image {
+                width: 90%;
+                height: 100%;
+                border-radius: 0px;
+        }
+        /* .info-button {
                 min-height: 30px;
                 min-width: 30px;
                 border-radius: 50%;
@@ -55,7 +44,7 @@
                 text-decoration: none;
                 font-family: "Times New Roman";
                 box-shadow: 0px 0px 5px 1px rgb(158, 158, 158);
-        }
+        } */
         .id {
                 display: none;
         }
@@ -69,7 +58,6 @@
                 font-weight: 600;
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
-
         }
 
         .cat {
@@ -86,36 +74,20 @@
                 text-transform: uppercase;
         }
 
-        .title {
+        .nom {
                 font-size: 1rem;
                 font-weight: 500;
                 letter-spacing: -0.9px;
                 color: var(--ardoise);
         }
 
-        .date {
-                font-size: 2em;
-                text-transform: uppercase;
-                font-weight: 900;
-                background-color: white;
-                color: rgb(212, 17, 17);
-                /* border: 1px solid grey; */
-                padding: 8px 12px;
-                border-radius: 5px;
-        }
-        /* .wrapper-horaire-tarif {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 0px;
-        }
-        .p {
-                font-size: 0.9em;
-                font-weight: 400;
-                color: var(--ardoise);
+        .object {
+                font-size: 1rem;
+                font-weight: 500;
                 letter-spacing: -0.9px;
-        } */
+                color: var(--ardoise);
+        }
+
         .informations {
                 background-color: var(--blue);
                 color: var(--whiteGrey);

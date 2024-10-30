@@ -1,8 +1,5 @@
-
-
 <script>
-        import EventDetail from "../../../components/EventDetail.svelte"; 
-  
+        import Event from "../../../components/Event-Details.svelte"; 
 </script>
 
-<EventDetail />
+<Event/>

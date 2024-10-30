@@ -2,7 +2,8 @@
         import { onMount } from "svelte";
         import { jsonDataByDate } from "../lib/store.js";
         import { page } from "$app/stores";
-        import Header from "./Header.svelte";
+        import Header2 from "./Header2.svelte";
+        import Return from "../assets/retour.png";
 
         let id;
         let event;
@@ -68,55 +69,77 @@ END:VCALENDAR
         }
 </script>
 
-<Header />
+<div class="wrapper-header">
+<Header2 />
+</div>
 
-{#if event}
-        <div class="event-card">
-        <img src={event.image} alt="" />
-                <p class="date">{event.date}</p>
-        <p class="id">{event.id}</p>
-        <p class="cat">{event.catégorie}</p>
-        <p class="lieu">{event.lieu}</p>
-
-           <div class="wrapper-calendar">
-                <p>Importer l'évènement dans votre calendrier</p>
-                <div class="wrapper-buttons-informations">
-                        <button class="calendar" on:click={generateICS}>ICS</button>
-                        <a class="calendar" href={googleCalendarUrl} target="_blank">Google</a>
-                        <a class="calendar" href={outlookCalendarUrl} target="_blank">Outlook</a>
-                        <a class="calendar" href={yahooCalendarUrl} target="_blank">Yahoo</a>
-                        </div>
+ {#if event}
+                <div class="wrapper-details">
+                <div class="wrapper">
+                        <img class="image" src={event.image} alt="" />
+                        <a href="/"> <img src={Return} alt="" class="return" /></a>
                 </div>
-        
-        <p class="title">{event.titre}</p>
-        <p class="description">{event.description}</p>
-        <div class="wrapper-horaire-tarif">
-                <p class="p">Horaire début: {event.début}</p>
-                <p class="p">Horaire fin: {event.fin}</p>
-                <p class="p">Tarif: {event.tarif}</p>
-        </div>
-          <a class="informations" href={event.lien} target="_blank">informations/réservation</a>
-          </div>
+                <p class="date">{event.date}</p>
 
-      
+                <p class="id">{event.id}</p>
+                <p class="cat">{event.catégorie}</p>
+                <p class="lieu">{event.lieu}</p>
+
+                <p class="title">{event.titre}</p>
+                <p class="description">{event.description}</p>
+                <div class="wrapper-horaire-tarif">
+                        <p class="p">Horaire début: {event.début}</p>
+                        <p class="p">Horaire fin: {event.fin}</p>
+                        <p class="p">Tarif: {event.tarif}</p>
+                </div>
+                <a class="informations" href={event.lien} target="_blank">informations/réservation</a>
+        </div>
+
+                <div class="wrapper-calendar">
+        <p>Sauvegarder dans votre calendrier</p>
+        <div class="wrapper-buttons-informations">
+                <button class="calendar" on:click={generateICS}>ICS</button>
+                <a class="calendar" href={googleCalendarUrl} target="_blank">Google</a>
+                <a class="calendar" href={outlookCalendarUrl} target="_blank">Outlook</a>
+                <a class="calendar" href={yahooCalendarUrl} target="_blank">Yahoo</a>
+        </div>
+</div> 
+        
 {:else}
         <p>Chargement...</p>
 {/if}
-     
+
+
 <style>
-        .event-card {
+       
+        .wrapper-details {
+                background-color: transparent;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 10px;
-                padding: 10px;
-                background-color:  transparent;
-                border: none;
-                text-decoration: none;
-                margin-top: 200px;
-                margin-bottom: 100px;
-                height: 100%;
+                justify-content: center;
+                gap: 20px;
         }
+        .wrapper {
+                position: relative;
+        }
+        .return {
+                position: absolute;
+                bottom: -50px; /* Ajuster l'espacement sous l'image */
+                left: 90%;
+                transform: translateX(-50%); /* Centre horizontalement sous l'image */
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                padding: 5px;
+                background-color: var(--ardoise);
+                box-shadow: 0px 0px 5px 1px rgb(130, 130, 130);
+                transition: 0.3s ease-in-out;
+        }       
+        .return:hover {
+                border: grey 3px solid;
+        }
+
         .wrapper-calendar {
                 display: flex;
                 flex-direction: column;
@@ -128,9 +151,9 @@ END:VCALENDAR
                 padding: 10px;
                 border-radius: 10px;
         }
-         .wrapper-calendar p {
+        .wrapper-calendar p {
                 font-size: 0.8rem;
-         }
+        }
         .calendar {
                 display: flex;
                 align-items: center;
@@ -153,18 +176,17 @@ END:VCALENDAR
                 border: none;
                 box-shadow: 0px 0px 10px rgb(174, 173, 173);
         }
-        .wrapper-buttons-informations{
-                display:flex;
+        .wrapper-buttons-informations {
+                display: flex;
                 flex-direction: rows;
                 gap: 20px;
         }
         .id {
                 display: none;
         }
-        img {
-                width: 90%;
+        .image {
+                width: 100%;
                 height: 100%;
-                border-radius: 8px;
         }
         .lieu {
                 font-size: 1em;
@@ -203,7 +225,10 @@ END:VCALENDAR
                 border: none;
                 padding: 8px 12px;
                 border-radius: 5px;
+                position: relative;
+                margin-top: 30px;
         }
+
         .wrapper-horaire-tarif {
                 display: flex;
                 flex-direction: column;
@@ -239,17 +264,16 @@ END:VCALENDAR
         }
 
         @media screen and (max-width: 768px) {
-                .event-card {
+                /* .wrapper-details{
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         gap: 10px;
                         padding: 10px;
                         background-color: white;
-                }
-                img {
+                } */
+                .image {
                         min-width: 95%;
-                        border-radius: 10px;
                 }
         }
 </style>

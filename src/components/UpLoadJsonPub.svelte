@@ -5,7 +5,7 @@
 
   async function fetchJsonServicesData() {
     try {
-      const jsonDataCollection = collection(db, "BDDjson");
+      const jsonDataCollection = collection(db, "BDDPub");
       const querySnapshot = await getDocs(jsonDataCollection);
       let tempJsonServices = [];
 
