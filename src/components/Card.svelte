@@ -7,7 +7,7 @@
         // export let début;
         // export let fin;
         // export let tarif;
-        export let lien;
+        // export let lien;
         export let lieu;
         export let id;
 </script>
@@ -27,7 +27,7 @@
                 <p class="p">Fin: {fin}</p>
                 <p class="p">Tarif: {tarif}</p>
         </div> -->
-        <a class="informations" href={lien} target="_blank">informations/réservation</a>
+        <!-- <a class="informations" href={lien} target="_blank">informations/réservation</a> -->
 </div>
 
 <style>
@@ -55,6 +55,7 @@
                 text-decoration: none;
                 font-family: "Times New Roman";
                 box-shadow: 0px 0px 5px 1px rgb(158, 158, 158);
+                margin-top: 20px;
         }
         .id {
                 display: none;
@@ -91,6 +92,7 @@
                 font-weight: 500;
                 letter-spacing: -0.9px;
                 color: var(--ardoise);
+                margin-bottom: 20px
         }
 
         .date {
@@ -116,7 +118,7 @@
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
         } */
-        .informations {
+        /* .informations {
                 background-color: var(--blue);
                 color: var(--whiteGrey);
                 padding: 8px 13px;
@@ -130,12 +132,12 @@
                 text-transform: capitalize;
                 font-family: Inter;
                 font-weight: 300;
-        }
+        } */
 
-        .informations:hover {
+        /* .informations:hover {
                 background-color: var(--secondary);
                 color: var(--whiteGrey);
-        }
+        } */
 
         @media screen and (max-width: 768px) {
                 .card {

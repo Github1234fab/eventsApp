@@ -70,11 +70,11 @@ END:VCALENDAR
 </script>
 
 <div class="wrapper-header">
-<Header2 />
+        <Header2 />
 </div>
 
- {#if event}
-                <div class="wrapper-details">
+{#if event}
+        <div class="wrapper-details">
                 <div class="wrapper">
                         <img class="image" src={event.image} alt="" />
                         <a href="/"> <img src={Return} alt="" class="return" /></a>
@@ -92,26 +92,25 @@ END:VCALENDAR
                         <p class="p">Horaire fin: {event.fin}</p>
                         <p class="p">Tarif: {event.tarif}</p>
                 </div>
-                <a class="informations" href={event.lien} target="_blank">informations/réservation</a>
         </div>
 
-                <div class="wrapper-calendar">
-        <p>Sauvegarder dans votre calendrier</p>
-        <div class="wrapper-buttons-informations">
-                <button class="calendar" on:click={generateICS}>ICS</button>
-                <a class="calendar" href={googleCalendarUrl} target="_blank">Google</a>
-                <a class="calendar" href={outlookCalendarUrl} target="_blank">Outlook</a>
-                <a class="calendar" href={yahooCalendarUrl} target="_blank">Yahoo</a>
+        <p class="details">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic perferendis quia eveniet magni dolor rerum dolorum ad, facilis amet recusandae, ullam placeat provident laudantium iusto, vitae cumque necessitatibus voluptates eum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus distinctio recusandae iusto consectetur doloremque harum esse, veniam atque neque quibusdam inventore explicabo dolores commodi ipsum perferendis ducimus hic quidem.</p>
+
+        <div class="wrapper-calendar">
+                <!-- <p>+ calendrier</p> -->
+                <a class="informations" href={event.lien} target="_blank">Information - réservation</a>
+                <div class="wrapper-calendar--link-button">
+                        <button class="calendar--link-button" on:click={generateICS}>ICS</button>
+                        <a class="calendar--link-button" href={googleCalendarUrl} target="_blank">Google</a>
+                        <a class="calendar--link-button" href={outlookCalendarUrl} target="_blank">Outlook</a>
+                        <a class="calendar--link-button" href={yahooCalendarUrl} target="_blank">Yahoo</a>
+                </div>
         </div>
-</div> 
-        
 {:else}
         <p>Chargement...</p>
 {/if}
 
-
 <style>
-       
         .wrapper-details {
                 background-color: transparent;
                 display: flex;
@@ -119,68 +118,12 @@ END:VCALENDAR
                 align-items: center;
                 justify-content: center;
                 gap: 20px;
+                min-height: 100%;
         }
         .wrapper {
                 position: relative;
         }
-        .return {
-                position: absolute;
-                bottom: -50px; /* Ajuster l'espacement sous l'image */
-                left: 90%;
-                transform: translateX(-50%); /* Centre horizontalement sous l'image */
-                height: 40px;
-                width: 40px;
-                border-radius: 50%;
-                padding: 5px;
-                background-color: var(--ardoise);
-                box-shadow: 0px 0px 5px 1px rgb(130, 130, 130);
-                transition: 0.3s ease-in-out;
-        }       
-        .return:hover {
-                border: grey 3px solid;
-        }
 
-        .wrapper-calendar {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-around;
-                gap: 10px;
-                margin-top: 20px;
-                border: none;
-                padding: 10px;
-                border-radius: 10px;
-        }
-        .wrapper-calendar p {
-                font-size: 0.8rem;
-        }
-        .calendar {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: rgb(103, 103, 240);
-                color: var(--whiteGrey);
-                text-align: center;
-                height: 40px;
-                width: 40px;
-                padding: 30px;
-                border-radius: 50%;
-                cursor: pointer;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                text-decoration: none;
-                font-size: 0.6rem;
-                text-transform: capitalize;
-                font-family: Inter;
-                font-weight: 700;
-                border: none;
-                box-shadow: 0px 0px 10px rgb(174, 173, 173);
-        }
-        .wrapper-buttons-informations {
-                display: flex;
-                flex-direction: rows;
-                gap: 20px;
-        }
         .id {
                 display: none;
         }
@@ -188,34 +131,23 @@ END:VCALENDAR
                 width: 100%;
                 height: 100%;
         }
-        .lieu {
-                font-size: 1em;
-                font-weight: 400;
-                color: var(--ardoise);
-                letter-spacing: -0.9px;
-                margin-top: -10px;
+        .return {
+                position: absolute;
+                bottom: -50px; /* Ajuster l'espacement sous l'image */
+                left: 80%;
+                /* transform: translateX(-90%); */
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                padding: 5px;
+                background-color: var(--ardoise);
+                box-shadow: 0px 0px 5px 1px rgb(130, 130, 130);
+                transition: 0.3s ease-in-out;
+                margin-top: 20px;
         }
-
-        .cat {
-                font-size: 1.8em;
-                font-weight: 900;
-                color: var(--ardoise);
-                text-transform: uppercase;
+        .return:hover {
+                border: grey 3px solid;
         }
-        .description {
-                font-size: 1em;
-                font-weight: 400;
-                letter-spacing: 3.9px;
-                color: var(--ardoise);
-                text-transform: uppercase;
-        }
-
-        .title {
-                font-size: 1rem;
-                font-weight: 600;
-                letter-spacing: -0.9px;
-        }
-
         .date {
                 font-size: 2em;
                 text-transform: uppercase;
@@ -226,7 +158,37 @@ END:VCALENDAR
                 padding: 8px 12px;
                 border-radius: 5px;
                 position: relative;
-                margin-top: 30px;
+                margin-top: 50px;
+        }
+        .cat {
+                font-size: 1.9em;
+                font-weight: 900;
+                color: var(--ardoise);
+                text-transform: uppercase;
+                margin-top: -30px;
+        }
+        .lieu {
+                font-size: 1.5em;
+                font-weight: 400;
+                color: var(--ardoise);
+                letter-spacing: -0.9px;
+                margin-top: 0px;
+        }
+
+        .description {
+                font-size: 1em;
+                font-weight: 400;
+                letter-spacing: 3.9px;
+                color: var(--ardoise);
+                text-transform: uppercase;
+                margin-top: 10px;
+        }
+
+        .title {
+                font-size: 1rem;
+                font-weight: 600;
+                letter-spacing: 1.2px;
+                margin-top: -20px;
         }
 
         .wrapper-horaire-tarif {
@@ -238,29 +200,95 @@ END:VCALENDAR
         }
         .p {
                 font-size: 0.9em;
-                font-weight: 200;
+                font-weight: 400;
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
         }
+        .details {
+                font-size: 1rem;
+                font-weight: 300;
+                color: var(--ardoise);
+                letter-spacing: 0px;
+                margin-top: 20px;
+                padding: 10px;
+                text-align: center;
+        }
         .informations {
-                background-color: var(--ardoise);
-                color: var(--whiteGrey);
-                padding: 8px 13px;
+                background-color: transparent;
+                color: var(--ardoise);
+                padding: 15px 13px;
                 border-radius: 8px;
                 cursor: pointer;
                 border: 1px solid var(--secondary);
-                margin-top: 10px;
+                margin-top: 30px;
                 margin-bottom: 10px;
                 text-decoration: none;
-                font-size: 0.7rem;
+                font-size: 1rem;
                 text-transform: capitalize;
                 font-family: Inter;
                 font-weight: 300;
+                box-shadow: 0px 0px 5px rgba(48, 48, 48, 0.37);
+                transition: 0.2s ease-in-out;
         }
 
         .informations:hover {
-                background-color: var(--secondary);
+                background-color: transparent;
+                color: var(--ardoise);
+                border-radius: 20px;
+
+                box-shadow: none;
+        }
+        .wrapper-calendar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                gap: 10px;
+                margin-top: 20px;
+                border: none;
+                padding: 10px;
+                border-radius: 10px;
+
+                max-width: 90%;
+                margin: 0 auto;
+        }
+        /* .wrapper-calendar p {
+                font-size: 1rem;
+                text-transform: capitalize;
+                color: var(--ardoise);
+        } */
+        .calendar--link-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(45deg, var(--blue), var(--cta2));
                 color: var(--whiteGrey);
+                text-align: center;
+                height: 60px;
+                width: 60px;
+                padding: 35px;
+                border-radius: 50%;
+                cursor: pointer;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                text-decoration: none;
+                font-size: 0.8rem;
+                text-transform: capitalize;
+                font-family: Inter;
+                font-weight: 700;
+                border: none;
+                box-shadow: 0px 0px 5px rgb(48, 48, 48);
+                text-transform: capitalize;
+                transition: 0.8s ease;
+        }
+        .calendar--link-button:hover {
+                transform: rotate(360deg);
+        }
+        .wrapper-calendar--link-button {
+                display: flex;
+                flex-direction: rows;
+                gap: 20px;
+                margin-bottom: 100px;
         }
 
         @media screen and (max-width: 768px) {

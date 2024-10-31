@@ -159,7 +159,6 @@
                 border-radius: 10px;
                 box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%);
                 background-color: var(--whiteGrey);
-           
         }
 
         .wrapper-header {
