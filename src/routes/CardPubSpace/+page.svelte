@@ -1,14 +1,49 @@
 <script>
-        import { headingsTab } from "../../lib/storeAdvertisement.js";
-        import CardPub from "../../components/Card-pub.svelte";
-        import Header3 from "../../components/Header3.svelte";
+    import { headingsTab, filterCategorie, filterObject, filterLieu } from "../../lib/storeAdvertisement.js";
+    import CardPub from "../../components/Card-pub.svelte";
+    import Header3 from "../../components/Header3.svelte";
 
-        let headings = [];
-        $: headings = $headingsTab;
+    let headings = [];
+    $: headings = $headingsTab;
+    console.log('Headings:', headings); // Log pour vérifier les données
+
+    let filteredHeadings = [];
+    $: filteredHeadings = headings.filter(heading => {
+        return (
+            (!$filterCategorie || (heading.catégorie && heading.catégorie.includes($filterCategorie))) &&
+            (!$filterObject || (heading.object && heading.object.includes($filterObject))) &&
+            (!$filterLieu || (heading.lieu && heading.lieu.includes($filterLieu)))
+        );
+    });
+    console.log('Filtered Headings:', filteredHeadings); // Log pour vérifier les données filtrées
+    
 </script>
 
 <Header3 />
 
-{#each headings as heading}
-<CardPub {heading} />
-{/each}
+<div class="wrapper-card-pub">
+    {#each filteredHeadings.length > 0 ? filteredHeadings : headings as heading}
+        <CardPub {heading} />
+    {/each}
+</div>
+
+<style>
+        .wrapper-card-pub {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 100px;
+                min-height: 100%;
+                gap: 40px;
+        }
+
+        @media screen and (max-width: 768px) {
+                .wrapper-card-pub {
+                        margin-top: 250px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        max-width: 90%;
+                }
+        }
+</style>

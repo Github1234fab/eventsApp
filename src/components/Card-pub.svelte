@@ -26,6 +26,7 @@
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
+
         }
         .image {
                 width: 90%;

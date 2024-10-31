@@ -2,19 +2,19 @@
         import { fly } from "svelte/transition";
         import Flèche from "../assets/montagne.png";
         import svgMenu from "../assets/svg-menu.svg";
-        // import { slide } from "svelte/transition";
         let menuVisible = false;
         import ButtonSuscription from "../components/Suscription-button.svelte";
         import SuscriptionButton from "../components/Suscription-button.svelte";
+        import { filterCategorie, filterObject, filterLieu } from "../lib/storeAdvertisement.js";
+        // import { writable } from "svelte/store";
+
         function openCloseMenu() {
                 menuVisible = !menuVisible;
         }
 
-        import { writable } from "svelte/store";
-        export let filterLieu = writable("");
-        export let filterCategory = writable("");
-        export let filterDate = writable("");
-
+    
+        const categories = ["Métiers de bouche", "Vêtement", "Commerce d'objets", "Fleuriste", "BTP"];
+        const objects = ["Boucherie-charcuterie", "Brocanteur", "Prêt à porté"];
         const lieux = [
                 "Aveize",
                 "Beauvallon",
@@ -69,17 +69,6 @@
                 "Virigneux",
                 "Yzeron",
         ];
-
-        const categories = ["Cinema", "Musées et visites", "Loisirs et jeux", "Fête", "Atelier", "Activité sportive", "Baignade", "Cours et stages", "Balades", "Parcs", "Resto et goûter", "Brocante et foire", "Concert", "Conférence", "Concours", "Lecture", "Enfant", "Sortie", "Exposition", "Sports", "Culture"];
-
-        const datesOptions = ["Aujourd'hui", "Cette semaine", "Ce week-end", "Ce mois-ci"];
-
-        // Fonction pour réinitialiser les filtres
-        function resetFilters() {
-                filterLieu.set("");
-                filterCategory.set("");
-                filterDate.set("");
-        }
 </script>
 
 <header>
@@ -92,50 +81,65 @@
                 </button>
         </div>
 
-        <div class="filter-controls">
-                <div class="menu-container">
-                        {#if menuVisible}
-                                <div class="menu" in:fly={{ x: 200, duration: 1000 }} out:fly={{ x: 200, duration: 1000 }}>
-                                        <a href="/CardPubSpace">Publicités</a>
-                                        <a href="/">Nous contacter</a>
-                                        <!-- Ajoutez d'autres éléments de menu ici -->
-                                </div>
-                        {/if}
-                </div>
+        <div class="menu-container">
+                {#if menuVisible}
+                        <div class="menu" in:fly={{ x: 200, duration: 1000 }} out:fly={{ x: 200, duration: 1000 }}>
+                                <a href="/CardPubSpace">Publicités</a>
+                                <a href="/">Nous contacter</a>
+                                <!-- Ajoutez d'autres éléments de menu ici -->
+                        </div>
+                {/if}
+        </div>
 
-                <select bind:value={$filterLieu}>
-                        <option value="">Ou ?</option>
-                        {#each lieux as lieu}
-                                <option value={lieu}>{lieu}</option>
-                        {/each}
-                </select>
-
-                <select bind:value={$filterCategory}>
-                        <option value="">Quoi ?</option>
-                        {#each categories as category}
-                                <option value={category}>{category}</option>
-                        {/each}
-                </select>
-
-                <select bind:value={$filterDate}>
-                        <option value="">Quand ?</option>
-                        {#each datesOptions as dateOption}
-                                <option value={dateOption}>{dateOption}</option>
-                        {/each}
-                </select>
-                <button class="reset-filter" on:click={resetFilters}>Réinitialiser les filtres</button>
+        <div class="filters">
+                <label>
+                        Catégorie:
+                        <select bind:value={$filterCategorie}>
+                                <option value="">Toutes les catégories</option>
+                                {#each categories as category}
+                                        <option value={category}>{category}</option>
+                                {/each}
+                        </select>
+                </label>
+                <label>
+                        Object:
+                        <select bind:value={$filterObject}>
+                                <option value="">Tous les objets</option>
+                                {#each objects as object}
+                                        <option value={object}>{object}</option>
+                                {/each}
+                        </select>
+                </label>
+                <label>
+                        Lieu:
+                        <select bind:value={$filterLieu}>
+                                <option value="">Tous les lieux</option>
+                                {#each lieux as lieu}
+                                        <option value={lieu}>{lieu}</option>
+                                {/each}
+                        </select>
+                </label>
         </div>
 </header>
 
 <!-- Contenu du menu -->
 
 <style>
+        .filters {
+                display: flex;
+                gap: 10px;
+        }
+        label {
+                display: flex;
+                flex-direction: column;
+        }
         header {
                 padding: 0px;
+                margin-top: -260px;
                 background-color: rgb(249, 241, 242);
                 max-height: 100px;
                 width: 100%;
-                /* position: fixed; */
+                position: fixed;
                 z-index: 0;
         }
         .menu-container {
@@ -158,7 +162,6 @@
                 border-radius: 10px;
                 box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%);
                 background-color: var(--whiteGrey);
-           
         }
 
         .wrapper-header {
@@ -201,12 +204,12 @@
         a:hover {
                 color: #00bfff;
         }
-        .filter-controls {
+        /* .filter-controls {
                 display: flex;
                 justify-content: first baseline;
                 flex-wrap: wrap;
                 background-color: #ccc;
-        }
+        } */
         select {
                 padding: 5px 10px;
                 margin: 10px;
@@ -220,9 +223,9 @@
                 border: 1px solid #ccc;
                 background-color: #e3d2d2;
         }
-        .reset-filter {
+        /* .reset-filter {
                 box-shadow: 0px 0px 10px grey;
-        }
+        } */
 
         @media screen and (max-width: 768px) {
                 .logo {
