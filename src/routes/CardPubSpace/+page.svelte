@@ -16,10 +16,16 @@
         );
     });
     console.log('Filtered Headings:', filteredHeadings); // Log pour vérifier les données filtrées
+
+        function resetFilters() {
+        filterCategorie.set('');
+        filterObject.set('');
+        filterLieu.set('');
+    }
     
 </script>
 
-<Header3 />
+<Header3 {resetFilters} />
 
 <div class="wrapper-card-pub">
     {#each filteredHeadings.length > 0 ? filteredHeadings : headings as heading}

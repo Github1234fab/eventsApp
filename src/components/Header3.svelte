@@ -6,13 +6,13 @@
         import ButtonSuscription from "../components/Suscription-button.svelte";
         import SuscriptionButton from "../components/Suscription-button.svelte";
         import { filterCategorie, filterObject, filterLieu } from "../lib/storeAdvertisement.js";
+        export let resetFilters;
         // import { writable } from "svelte/store";
 
         function openCloseMenu() {
                 menuVisible = !menuVisible;
         }
 
-    
         const categories = ["Métiers de bouche", "Vêtement", "Commerce d'objets", "Fleuriste", "BTP"];
         const objects = ["Boucherie-charcuterie", "Brocanteur", "Prêt à porté"];
         const lieux = [
@@ -86,39 +86,36 @@
                         <div class="menu" in:fly={{ x: 200, duration: 1000 }} out:fly={{ x: 200, duration: 1000 }}>
                                 <a href="/CardPubSpace">Publicités</a>
                                 <a href="/">Nous contacter</a>
-                                <!-- Ajoutez d'autres éléments de menu ici -->
                         </div>
                 {/if}
         </div>
 
         <div class="filters">
                 <label>
-                        Catégorie:
                         <select bind:value={$filterCategorie}>
-                                <option value="">Toutes les catégories</option>
+                                <option value="">Catégories de métier</option>
                                 {#each categories as category}
                                         <option value={category}>{category}</option>
                                 {/each}
                         </select>
                 </label>
                 <label>
-                        Object:
                         <select bind:value={$filterObject}>
-                                <option value="">Tous les objets</option>
+                                <option value="">Métier</option>
                                 {#each objects as object}
                                         <option value={object}>{object}</option>
                                 {/each}
                         </select>
                 </label>
                 <label>
-                        Lieu:
                         <select bind:value={$filterLieu}>
-                                <option value="">Tous les lieux</option>
+                                <option value="">Lieu</option>
                                 {#each lieux as lieu}
                                         <option value={lieu}>{lieu}</option>
                                 {/each}
                         </select>
                 </label>
+                <button on:click={resetFilters}>Réinitialiser les filtres</button>
         </div>
 </header>
 
@@ -127,7 +124,9 @@
 <style>
         .filters {
                 display: flex;
-                gap: 10px;
+                justify-content: first baseline;
+                flex-wrap: wrap;
+                background-color: #ccc;
         }
         label {
                 display: flex;

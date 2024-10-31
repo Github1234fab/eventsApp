@@ -3,15 +3,17 @@
 </script>
 
 <div class="card">
+         <!-- <a class="info-button" href={`/event/${id}`}>i</a> -->
+            <a href={`/CardPub/${heading.id}`}>i</a>
         <img class="image" src="https://images.pexels.com/photos/696205/pexels-photo-696205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
         <!-- <a class="info-button" href={`/event/${id}`}>i</a> -->
         <p class="id">{heading.id}</p>
-        <p class="cat">{heading.catégorie}</p>
         <p class="nom">{heading.nom}</p>
         <p class="object">{heading.object}</p>
+        <!-- <p class="cat">{heading.catégorie}</p> -->
         <p class="lieu">{heading.lieu}</p>
         <p class="description">{heading.description}</p>
-        <a class="informations" href={heading.lien} target="_blank">informations/réservation</a>
+        <a class="informations" href={heading.lien} target="_blank">Site de l'annonceur</a>
 </div>
 
 <style>
@@ -26,7 +28,6 @@
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
-
         }
         .image {
                 width: 90%;
@@ -61,31 +62,29 @@
                 letter-spacing: -0.9px;
         }
 
-        .cat {
-                font-size: 1.8em;
+        .nom {
+                font-size: 2.5rem;
                 font-weight: 900;
+                letter-spacing: -0.9px;
                 color: var(--ardoise);
-                text-transform: uppercase;
         }
+        .object {
+                font-size: 1.6rem;
+                font-weight: 500;
+                letter-spacing: -0.9px;
+                color: var(--ardoise);
+        }
+
+        /* .cat {
+                font-size: 1.8em;
+                font-weight: 500;
+                color: var(--ardoise);
+                text-transform: capitalize;
+        } */
         .description {
                 font-size: 1em;
-                font-weight: 400;
-                letter-spacing: 3.9px;
-                color: var(--ardoise);
-                text-transform: uppercase;
-        }
-
-        .nom {
-                font-size: 1rem;
-                font-weight: 500;
-                letter-spacing: -0.9px;
-                color: var(--ardoise);
-        }
-
-        .object {
-                font-size: 1rem;
-                font-weight: 500;
-                letter-spacing: -0.9px;
+                font-weight: 300;
+                letter-spacing: 0px;
                 color: var(--ardoise);
         }
 
