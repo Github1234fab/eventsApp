@@ -1,23 +1,41 @@
 <script>
-        export let heading;
+        import { onMount } from "svelte";
+        import { headingsTab } from "../../../lib/storeAdvertisement.js"; // Remplacez par le chemin correct
+        import { get } from "svelte/store";
+        import Header2 from "../../../components/Header2.svelte";
+
+        let id;
+        let selectedHeading;
+
+        onMount(() => {
+                const url = window.location.href; // Obtenir l'URL complète
+                id = url.substring(url.lastIndexOf("/") + 1); // Obtenir la chaîne après le dernier slash
+                console.log(id); // Log pour vérifier l'ID
+
+                const allHeadings = get(headingsTab); // Obtenir toutes les données du store
+                selectedHeading = allHeadings.find((item) => item.id === id); // Chercher les données correspondantes
+                console.log(selectedHeading); // Log pour vérifier les données récupérées
+        });
 </script>
 
-<div class="card">
-         <!-- <a class="info-button" href={`/event/${id}`}>i</a> -->
-            <a href={`/CardPub/${heading.id}`}>i</a>
-        <img class="image" src="https://images.pexels.com/photos/696205/pexels-photo-696205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-        <!-- <a class="info-button" href={`/event/${id}`}>i</a> -->
-        <p class="id">{heading.id}</p>
-        <p class="nom">{heading.nom}</p>
-        <p class="object">{heading.object}</p>
-        <!-- <p class="cat">{heading.catégorie}</p> -->
-        <p class="lieu">{heading.lieu}</p>
-        <p class="description">{heading.description}</p>
-        <a class="informations" href={heading.lien} target="_blank">Site de l'annonceur</a>
-</div>
+<Header2 />
+{#if selectedHeading}
+        <div class="card-detail">
+                <h1 class="nom">{selectedHeading.nom}</h1>
+                <img class="image" src="https://images.pexels.com/photos/696205/pexels-photo-696205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                   <p class="description">{selectedHeading.description}</p>
+                <p class="object">{selectedHeading.object}</p>
+                <p class="lieu">{selectedHeading.lieu}</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat, ipsum distinctio sit cupiditate expedita beatae illo magnam, minima, possimus alias consequatur sed? Error ducimus dolorum, deleniti sunt voluptatem excepturi!
+                Vel inventore in sequi iste minus fugit sit, reprehenderit impedit perferendis nulla laboriosam tenetur dolor dolore a adipisci earum unde. Soluta reprehenderit fugit, eveniet consequatur dolorem veritatis deleniti quisquam laboriosam!</p>
+                <a class="informations" href={selectedHeading.lien} target="_blank">Site de l'annonceur</a>
+        </div>
+{:else}
+        <p>Chargement...</p>
+{/if}
 
 <style>
-        .card {
+        .card-detail {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -28,28 +46,15 @@
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
+                min-height: 100%;
+                /* margin-top: 200px; */
         }
         .image {
                 width: 90%;
                 height: 100%;
                 border-radius: 0px;
         }
-        /* .info-button {
-                min-height: 30px;
-                min-width: 30px;
-                border-radius: 50%;
-                background-color: var(--ardoise);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                text-decoration: none;
-                font-family: "Times New Roman";
-                box-shadow: 0px 0px 5px 1px rgb(158, 158, 158);
-        } */
-        .id {
-                display: none;
-        }
+
         img {
                 width: 90%;
                 height: 100%;
@@ -75,12 +80,6 @@
                 color: var(--ardoise);
         }
 
-        /* .cat {
-                font-size: 1.8em;
-                font-weight: 500;
-                color: var(--ardoise);
-                text-transform: capitalize;
-        } */
         .description {
                 font-size: 1em;
                 font-weight: 300;
@@ -102,6 +101,7 @@
                 text-transform: capitalize;
                 font-family: Inter;
                 font-weight: 300;
+                margin-bottom: 100px;
         }
 
         .informations:hover {
@@ -110,7 +110,7 @@
         }
 
         @media screen and (max-width: 768px) {
-                .card {
+                .card-detail {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
