@@ -85,14 +85,13 @@
 <header>
         <div class="wrapper-header">
                 <a href="/"><h1>C mon coin</h1></a>
-                <img class="logo" src={Flèche} alt="Logo" />
+                <!-- <img class="logo" src={Flèche} alt="Logo" /> -->
                 <SuscriptionButton />
+                <a href="/CardPubSpace" class="button-link-pub">publicité</a>
                 <button on:click={openCloseMenu}>
                         <img class="svg-menu" src={svgMenu} alt="Menu" />
                 </button>
         </div>
-
-        <a href="/CardPubSpace" class="button-link-pub">publicité</a>
 
         <div class="filter-controls">
                 <div class="menu-container">
@@ -133,13 +132,12 @@
 
 <style>
         header {
-                padding: 0px;
+                padding: 20px;
                 background-color: rgb(249, 241, 242);
-                max-height: 100px;
+                max-height: 350px;
                 width: 100%;
-                /* position: fixed; */
-                margin-top: -260px;
-                z-index: 0;
+                position: fixed;
+                margin-bottom: 300px;
         }
         .menu-container {
                 display: flex;
@@ -169,9 +167,9 @@
                 justify-content: space-between;
         }
 
-        .logo {
-                height: 100px; /* Ajustez la taille de l'image */
-        }
+        /* .logo {
+                height: 100px; 
+        }  */
 
         .svg-menu {
                 height: 30px; /* Ajustez la taille de l'icône du menu */
@@ -195,6 +193,7 @@
                 text-transform: capitalize;
                 font-family: "Bebas Neue";
                 margin-left: 0px;
+                z-index: 3;
         }
         a {
                 text-decoration: none;
@@ -205,12 +204,15 @@
         }
         .button-link-pub {
                 background-color: var(--ardoise);
-                padding: 10px;
+                padding: 10px 8px;
                 text-transform: capitalize;
                 font-size: 1rem;
                 font-weight: 300;
                 color: var(--whiteGrey);
                 box-shadow: 0px 0px 10px grey;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: -4px;
         }
 
         .filter-controls {
@@ -218,7 +220,7 @@
                 justify-content: first baseline;
                 flex-wrap: wrap;
                 background-color: #ccc;
-                margin-top: 20px;
+                margin-top: 0px;
         }
         select {
                 padding: 5px 10px;
@@ -239,7 +241,8 @@
 
         @media screen and (max-width: 768px) {
                 .logo {
-                        height: 100px;
+                        width: 200px;
+                        z-index: 0;
                 }
         }
 </style>

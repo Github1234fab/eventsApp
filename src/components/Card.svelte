@@ -43,7 +43,7 @@
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
-                min-width: 100%;
+                min-width: 90%;
         }
         .info-button {
                 min-height: 30px;
@@ -151,10 +151,11 @@
                         align-items: center;
                         gap: 10px;
                         padding: 10px;
-                        background-color: white;
+                        background-color: rgb(255, 255, 255);
+                           width: 90%;
                 }
                 img {
-                        min-width: 95%;
+                        min-width: 100%;
                         border-radius: 0px;
                 }
         }
