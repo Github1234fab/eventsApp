@@ -18,5 +18,6 @@
 <style>
         main {
                 height: auto;
+                        background-color: rgb(139, 104, 110);
         }
 </style>

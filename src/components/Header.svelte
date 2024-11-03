@@ -84,13 +84,15 @@
 
 <header>
         <div class="wrapper-header">
-                <a href="/"><h1>...</h1></a>
+                <a href="/"><h1>C mon coin</h1></a>
                 <img class="logo" src={Flèche} alt="Logo" />
                 <SuscriptionButton />
                 <button on:click={openCloseMenu}>
                         <img class="svg-menu" src={svgMenu} alt="Menu" />
                 </button>
         </div>
+
+        <a href="/CardPubSpace" class="button-link-pub">publicité</a>
 
         <div class="filter-controls">
                 <div class="menu-container">
@@ -201,11 +203,22 @@
         a:hover {
                 color: #00bfff;
         }
+        .button-link-pub {
+                background-color: var(--ardoise);
+                padding: 10px;
+                text-transform: capitalize;
+                font-size: 1rem;
+                font-weight: 300;
+                color: var(--whiteGrey);
+                box-shadow: 0px 0px 10px grey;
+        }
+
         .filter-controls {
                 display: flex;
                 justify-content: first baseline;
                 flex-wrap: wrap;
                 background-color: #ccc;
+                margin-top: 20px;
         }
         select {
                 padding: 5px 10px;

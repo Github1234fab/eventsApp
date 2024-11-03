@@ -79,6 +79,7 @@
     }
 </script>
 
+
 <div class="wrapper-header">
     <Header {filterLieu} {filterCategory} {filterDate} />
 </div>
@@ -89,7 +90,9 @@
     {/each}
 </div>
 
+
 <style>
+
     .wrapper-header {
         position: fixed;
     }
@@ -101,6 +104,8 @@
         margin-top: 100px;
         min-height: 100%;
         gap: 40px;
+     
+
     }
     @media screen and (max-width: 768px) {
         .wrapper-cards {
@@ -108,6 +113,7 @@
             margin-left: auto;
             margin-right: auto;
             max-width: 90%;
+            padding: 10px;
         }
     }
 </style>

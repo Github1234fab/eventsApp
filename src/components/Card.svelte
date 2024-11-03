@@ -16,11 +16,11 @@
         <img src={image} alt="" />
         <a class="info-button" href={`/event/${id}`}>i</a>
         <p class="date">{new Date(date).toLocaleDateString("fr-FR")}</p>
+        <p class="title">"{titre}"</p>
         <p class="id">{id}</p>
         <p class="cat">{catégorie}</p>
         <p class="lieu">{lieu}</p>
         <p class="description">{description}</p>
-        <p class="title">"{titre}"</p>
 
         <!-- <div class="wrapper-horaire-tarif">
                 <p class="p">Début: {début}</p>
@@ -35,6 +35,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 gap: 10px;
                 padding: 10px;
                 border-radius: 8px;
@@ -42,6 +43,7 @@
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
+                min-width: 100%;
         }
         .info-button {
                 min-height: 30px;
@@ -70,29 +72,32 @@
                 font-weight: 600;
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
-
         }
 
         .cat {
-                font-size: 1.8em;
-                font-weight: 900;
+                font-size: 1.2em;
+                font-weight: 400;
                 color: var(--ardoise);
                 text-transform: uppercase;
         }
         .description {
                 font-size: 1em;
                 font-weight: 400;
-                letter-spacing: 3.9px;
+                letter-spacing: 4.9px;
                 color: var(--ardoise);
                 text-transform: uppercase;
+                display: none;
         }
 
         .title {
-                font-size: 1rem;
-                font-weight: 500;
-                letter-spacing: -0.9px;
+                font-size: 1.5rem;
+                font-weight: 900;
                 color: var(--ardoise);
-                margin-bottom: 20px
+                text-transform: uppercase;
+                width: 100%;
+                word-break:keep-all   ;
+                text-align: center;
+
         }
 
         .date {
