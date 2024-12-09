@@ -90,24 +90,26 @@
 <style>
         .wrapper-cards {
                 display: flex;
-                flex-direction: column;
+                flex-wrap: wrap;
                 justify-content: center;
                 align-items: center;
-                min-height: 100%;
-                gap: 100px;
-                  padding-top: 330px;
-                  background-color: rgb(213, 195, 191);
-        }
-        /* @media screen and (max-width: 768px) {
-                .wrapper-cards {
-                           display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                margin-top: 50px;
+                max-width: 90%;
                 min-height: 100%;
                 gap: 50px;
-                background-color: pink;
+                padding-top: 200px;
+                background-color: rgb(255, 77, 0);
+                margin: 0 auto;
+        }
+   @media screen and (max-width: 768px) {
+                  .wrapper-cards {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 100%;
+                gap: 50px;
+                padding-top: 200px;
+                background-color: rgb(255, 77, 0);
+        }
                 }
-        } */
 </style>

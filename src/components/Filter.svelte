@@ -136,6 +136,7 @@
                 align-items: center;
                 justify-content: center;
                 height: auto;
+          
         }
 
         .wrapper-inputs {
@@ -146,7 +147,7 @@
                 align-items: baseline;
                 justify-content: center;
                 align-content: center;
-                margin: 30px auto;
+                margin: 0px auto;
                 border: 1px solid pink;
                 border-radius: 8px;
                 padding: 20px 30px;

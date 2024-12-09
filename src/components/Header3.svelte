@@ -13,8 +13,48 @@
                 menuVisible = !menuVisible;
         }
 
-        const categories = ["Métiers de bouche", "Vêtement", "Commerce d'objets", "Fleuriste", "BTP"];
-        const objects = ["Boucherie-charcuterie", "Brocanteur", "Prêt à porté"];
+        const categories = ["Boucherie-charcuterie", "Mode et accessoires", "Maison et décoration ", "Loisirs et culture", "Technologie et matériel", "Automobile", "Santé et bien-être", "Tourisme et loisirs"];
+        const objects = [
+  "Antiquaire",
+  "Bijoutier",
+  "Boulanger",
+  "Boucher",
+  "Caviste (vins et spiritueux)",
+  "Charcutier",
+  "Décorateur d'intérieur",
+  "Disquaire",
+  "Épicier",
+  "Esthéticien(ne)",
+  "Fleuriste",
+  "Fromager",
+  "Glacier",
+  "Herboriste",
+  "Horloger",
+  "Hôtelier",
+  "Informatique (PC, smartphones)",
+  "Libraire",
+  "Loueur de véhicules",
+  "Magasin de jeux vidéo",
+  "Marchand de journaux",
+  "Opticien",
+  "Parfumeur",
+  "Pâtissier",
+  "Pharmacien",
+  "Poissonnier",
+  "Primeur (fruits et légumes)",
+  "Quincailler",
+  "Restaurateur",
+  "Téléphonie mobile",
+  "Traiteur",
+  "Vendeur d'articles de sport",
+  "Vendeur de chaussures",
+  "Vendeur de meubles",
+  "Vendeur de prêt-à-porter",
+  "Vendeur d'électroménager"
+];
+
+
+
         const lieux = [
                 "Aveize",
                 "Beauvallon",
@@ -74,7 +114,7 @@
 <header>
         <div class="wrapper-header">
                 <a href="/"><h1>...</h1></a>
-                <img class="logo" src={Flèche} alt="Logo" />
+                <!-- <img class="logo" src={Flèche} alt="Logo" /> -->
                 <SuscriptionButton />
                 <button on:click={openCloseMenu}>
                         <img class="svg-menu" src={svgMenu} alt="Menu" />
@@ -91,14 +131,14 @@
         </div>
 
         <div class="filters">
-                <label>
+                <!-- <label>
                         <select bind:value={$filterCategorie}>
                                 <option value="">Catégories de métier</option>
                                 {#each categories as category}
                                         <option value={category}>{category}</option>
                                 {/each}
                         </select>
-                </label>
+                </label> -->
                 <label>
                         <select bind:value={$filterObject}>
                                 <option value="">Métier</option>
@@ -115,7 +155,7 @@
                                 {/each}
                         </select>
                 </label>
-                <button on:click={resetFilters}>Réinitialiser les filtres</button>
+                <button class="reset-filter" on:click={resetFilters}>Réinitialiser les filtres</button>
         </div>
 </header>
 
@@ -124,16 +164,20 @@
 <style>
         .filters {
                 display: flex;
-                justify-content: first baseline;
-                flex-wrap: wrap;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
                 background-color: #ccc;
+                height: auto;
+                width: 100%;
+                gap: 4px;
         }
         label {
                 display: flex;
                 flex-direction: column;
         }
         header {
-                padding: 0px;
+                padding: 20px;
                 margin-top: -260px;
                 background-color: rgb(249, 241, 242);
                 max-height: 100px;
@@ -169,9 +213,9 @@
                 justify-content: space-between;
         }
 
-        .logo {
-                height: 100px; /* Ajustez la taille de l'image */
-        }
+         /* .logo {
+                height: 100px;
+        }  */
 
         .svg-menu {
                 height: 30px; /* Ajustez la taille de l'icône du menu */
@@ -211,24 +255,20 @@
         } */
         select {
                 padding: 5px 10px;
-                margin: 10px;
+               max-width: 100px;
+                max-height: 30px;
                 border-radius: 5px;
                 border: 1px solid #ccc;
         }
-        button {
+        .reset-filter {
+                color: whitesmoke;
                 padding: 10px;
                 margin: 10px;
                 border-radius: 5px;
                 border: 1px solid #ccc;
-                background-color: #e3d2d2;
+                background-color: #1c1c1c;
         }
-        /* .reset-filter {
-                box-shadow: 0px 0px 10px grey;
-        } */
+       
 
-        @media screen and (max-width: 768px) {
-                .logo {
-                        height: 100px;
-                }
-        }
+       
 </style>

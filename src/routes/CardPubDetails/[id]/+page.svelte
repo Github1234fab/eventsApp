@@ -26,9 +26,9 @@
                    <p class="description">{selectedHeading.description}</p>
                 <p class="object">{selectedHeading.object}</p>
                 <p class="lieu">{selectedHeading.lieu}</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat, ipsum distinctio sit cupiditate expedita beatae illo magnam, minima, possimus alias consequatur sed? Error ducimus dolorum, deleniti sunt voluptatem excepturi!
+                <p class="text-description">{selectedHeading.txt}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat, ipsum distinctio sit cupiditate expedita beatae illo magnam, minima, possimus alias consequatur sed? Error ducimus dolorum, deleniti sunt voluptatem excepturi!
                 Vel inventore in sequi iste minus fugit sit, reprehenderit impedit perferendis nulla laboriosam tenetur dolor dolore a adipisci earum unde. Soluta reprehenderit fugit, eveniet consequatur dolorem veritatis deleniti quisquam laboriosam!</p>
-                <a class="informations" href={selectedHeading.lien} target="_blank">Site de l'annonceur</a>
+                <a class="informations" href={selectedHeading.lien} target="_blank">Site du commerçant</a>
         </div>
 {:else}
         <p>Chargement...</p>
@@ -46,7 +46,7 @@
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
-                min-height: 100%;
+           height: 100vh;
                 /* margin-top: 200px; */
         }
         .image {
@@ -72,6 +72,7 @@
                 font-weight: 900;
                 letter-spacing: -0.9px;
                 color: var(--ardoise);
+                margin-top: 10px;
         }
         .object {
                 font-size: 1.6rem;
@@ -90,7 +91,7 @@
         .informations {
                 background-color: var(--blue);
                 color: var(--whiteGrey);
-                padding: 8px 13px;
+                padding: 15px 20px;
                 border-radius: 8px;
                 cursor: pointer;
                 border: 1px solid var(--secondary);
@@ -108,15 +109,24 @@
                 background-color: var(--secondary);
                 color: var(--whiteGrey);
         }
+        .text-description {
+                font-size: 1em;
+                font-weight: 400;
+                letter-spacing: 0px;
+                color: var(--ardoise);
+                line-height: 30px;
+                padding: 10px;  
+        }
 
         @media screen and (max-width: 768px) {
                 .card-detail {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        gap: 10px;
+                        gap: 30px;
                         padding: 10px;
                         background-color: white;
+                        height: auto;
                 }
                 img {
                         min-width: 95%;

@@ -145,7 +145,7 @@
         <p class="object">{heading.object}</p>
         <p class="lieu">{heading.lieu}</p>
         <p class="description">{heading.description}</p>
-        <a class="informations" href={heading.lien} target="_blank">Site de l'annonceur</a>
+        <!-- <a class="informations" href={heading.lien} target="_blank">Site de l'annonceur</a> -->
 </div>
 
 <style>
@@ -219,9 +219,10 @@
                 font-weight: 300;
                 letter-spacing: 0px;
                 color: var(--ardoise);
+                margin-bottom: 10px;
         }
 
-        .informations {
+        /* .informations {
                 background-color: var(--blue);
                 color: var(--whiteGrey);
                 padding: 8px 13px;
@@ -240,7 +241,7 @@
         .informations:hover {
                 background-color: var(--secondary);
                 color: var(--whiteGrey);
-        }
+        } */
 
         @media screen and (max-width: 768px) {
                 .card {
@@ -250,6 +251,7 @@
                         gap: 10px;
                         padding: 10px;
                         background-color: white;
+
                 }
                 img {
                         min-width: 95%;

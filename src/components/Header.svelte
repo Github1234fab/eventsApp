@@ -86,9 +86,9 @@
         <div class="wrapper-header">
                 <a href="/"><h1>C mon coin</h1></a>
                 <!-- <img class="logo" src={Flèche} alt="Logo" /> -->
-                <SuscriptionButton />
-                <a href="/CardPubSpace" class="button-link-pub">publicité</a>
-                <button on:click={openCloseMenu}>
+                <!-- <SuscriptionButton /> -->
+                <!-- <a href="/CardPubSpace" class="button-link-pub">publicité</a> -->
+                <button class="button-menu" on:click={openCloseMenu}>
                         <img class="svg-menu" src={svgMenu} alt="Menu" />
                 </button>
         </div>
@@ -97,7 +97,7 @@
                 <div class="menu-container">
                         {#if menuVisible}
                                 <div class="menu" in:fly={{ x: 200, duration: 1000 }} out:fly={{ x: 200, duration: 1000 }}>
-                                        <a href="/CardPubSpace">Publicités</a>
+                                        <a href="/CardPubSpace">Commerces</a>
                                         <a href="/">Nous contacter</a>
                                         <!-- Ajoutez d'autres éléments de menu ici -->
                                 </div>
@@ -124,7 +124,7 @@
                                 <option value={dateOption}>{dateOption}</option>
                         {/each}
                 </select>
-                <button class="reset-filter" on:click={resetFilters}>Réinitialiser les filtres</button>
+                <button class="reset-filter" on:click={resetFilters}>Annuler les filtres</button>
         </div>
 </header>
 
@@ -147,6 +147,14 @@
                 padding: 10px;
                 z-index: 3;
                 position: fixed; /* Utilisez position: fixed pour que le menu soit au-dessus des autres éléments */
+        }
+        .button-menu {
+                background-color: transparent;
+                transition: 0.3s ease-in-out;
+                /* box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.429); */
+        }
+        .button-menu:hover {
+                transform: scale(1.1);
         }
 
         .menu {
@@ -176,7 +184,7 @@
                 cursor: pointer;
         }
         button {
-                background-color: transparent;
+                background-color: grey;
                 border: none;
                 padding: 10px;
                 cursor: pointer;
@@ -187,8 +195,8 @@
         }
 
         h1 {
-                font-size: 2.9rem;
-                padding: 10px;
+                font-size: 2.4rem;
+                padding: 0px;
                 font-weight: 500;
                 text-transform: capitalize;
                 font-family: "Bebas Neue";
@@ -202,47 +210,37 @@
         a:hover {
                 color: #00bfff;
         }
-        .button-link-pub {
-                background-color: var(--ardoise);
-                padding: 10px 8px;
-                text-transform: capitalize;
-                font-size: 1rem;
-                font-weight: 300;
-                color: var(--whiteGrey);
-                box-shadow: 0px 0px 10px grey;
-                border-radius: 5px;
-                cursor: pointer;
-                margin-top: -4px;
-        }
 
         .filter-controls {
                 display: flex;
                 justify-content: first baseline;
                 flex-wrap: wrap;
-                background-color: #ccc;
-                margin-top: 0px;
+                margin-top: 10px;
+                gap: 5px;
         }
         select {
-                padding: 5px 10px;
-                margin: 10px;
+                padding: 5px 0px;
+                margin: 0px;
                 border-radius: 5px;
-                border: 1px solid #ccc;
+                /* box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.253); */
+                border: none;
+                max-width: 100px;
+                max-height: 30px;
         }
-        button {
-                padding: 10px;
-                margin: 10px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-                background-color: #e3d2d2;
-        }
+
         .reset-filter {
-                box-shadow: 0px 0px 10px grey;
+                box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.526);
+                background-color: rgb(26, 26, 25);
+                border: none;
+                color: var(--whiteGrey);
+                margin-top: 4px;
+                padding: 7px;
         }
 
         @media screen and (max-width: 768px) {
-                .logo {
+                /* .logo {
                         width: 200px;
                         z-index: 0;
-                }
+                } */
         }
 </style>
