@@ -93,12 +93,12 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 align-items: center;
-                max-width: 90%;
+                max-width: 100%;
                 min-height: 100%;
                 gap: 50px;
-                padding-top: 200px;
+                padding-top: 250px;
                 background-color: rgb(255, 77, 0);
-                margin: 0 auto;
+                margin: 0px auto;
         }
    @media screen and (max-width: 768px) {
                   .wrapper-cards {
@@ -108,8 +108,10 @@
                 align-items: center;
                 min-height: 100%;
                 gap: 50px;
-                padding-top: 200px;
+                padding-top: 250px;
                 background-color: rgb(255, 77, 0);
+                padding-bottom: 100px;
+     
         }
                 }
 </style>

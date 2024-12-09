@@ -84,26 +84,21 @@
 
 <header>
         <div class="wrapper-header">
-                <a href="/"><h1>C mon coin</h1></a>
-                <!-- <img class="logo" src={Flèche} alt="Logo" /> -->
-                <!-- <SuscriptionButton /> -->
-                <!-- <a href="/CardPubSpace" class="button-link-pub">publicité</a> -->
+                <a href="/"><h1>. ... ....</h1></a>
                 <button class="button-menu" on:click={openCloseMenu}>
                         <img class="svg-menu" src={svgMenu} alt="Menu" />
                 </button>
         </div>
-
+        <div class="menu-container">
+                {#if menuVisible}
+                        <div class="menu" in:fly={{ x: 400, duration: 1000 }} out:fly={{ x: 400, duration: 1000 }}>
+                                <a href="/CardPubSpace">Commerces</a>
+                                <a href="/">Nous contacter</a>
+                                <!-- Ajoutez d'autres éléments de menu ici -->
+                        </div>
+                {/if}
+        </div>
         <div class="filter-controls">
-                <div class="menu-container">
-                        {#if menuVisible}
-                                <div class="menu" in:fly={{ x: 200, duration: 1000 }} out:fly={{ x: 200, duration: 1000 }}>
-                                        <a href="/CardPubSpace">Commerces</a>
-                                        <a href="/">Nous contacter</a>
-                                        <!-- Ajoutez d'autres éléments de menu ici -->
-                                </div>
-                        {/if}
-                </div>
-
                 <select bind:value={$filterLieu}>
                         <option value="">Ou ?</option>
                         {#each lieux as lieu}
@@ -124,7 +119,7 @@
                                 <option value={dateOption}>{dateOption}</option>
                         {/each}
                 </select>
-                <button class="reset-filter" on:click={resetFilters}>Annuler les filtres</button>
+                <button class="reset-filter btn-grad" on:click={resetFilters}>Annuler les filtres</button>
         </div>
 </header>
 
@@ -132,26 +127,33 @@
 
 <style>
         header {
+                display: flex;
+                flex-direction: column;
                 padding: 20px;
                 background-color: rgb(249, 241, 242);
-                max-height: 350px;
+                height: auto;
                 width: 100%;
                 position: fixed;
-                margin-bottom: 300px;
+        }
+
+        .wrapper-header {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
         }
         .menu-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                padding: 10px;
-                z-index: 3;
-                position: fixed; /* Utilisez position: fixed pour que le menu soit au-dessus des autres éléments */
+                z-index: 20;
+                position: relative;
         }
         .button-menu {
+                border: none;
                 background-color: transparent;
                 transition: 0.3s ease-in-out;
-                /* box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.429); */
         }
         .button-menu:hover {
                 transform: scale(1.1);
@@ -163,35 +165,22 @@
                 align-items: center;
                 align-content: center;
                 gap: 30px;
+                box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%);
+                background-color: rgba(255, 255, 255, 0.6);
+                backdrop-filter: blur(15px);
                 padding: 30px 40px;
                 border-radius: 10px;
-                box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%);
-                background-color: var(--whiteGrey);
+                width: 300px;
+                height: 100%;
+                position: fixed;
+                top: 70px;
+                right: 0;
+                overflow: auto;
         }
-
-        .wrapper-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-        }
-
-        /* .logo {
-                height: 100px; 
-        }  */
 
         .svg-menu {
-                height: 30px; /* Ajustez la taille de l'icône du menu */
+                height: 30px;
                 cursor: pointer;
-        }
-        button {
-                background-color: grey;
-                border: none;
-                padding: 10px;
-                cursor: pointer;
-                margin-right: 10px;
-        }
-        button:hover {
-                background-color: rgb(211, 211, 213);
         }
 
         h1 {
@@ -216,16 +205,21 @@
                 justify-content: first baseline;
                 flex-wrap: wrap;
                 margin-top: 10px;
-                gap: 5px;
+                gap: 10px;
+                z-index: 10;
+                height: 100px;
         }
         select {
-                padding: 5px 0px;
+                padding: 5px 5px;
                 margin: 0px;
                 border-radius: 5px;
-                /* box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.253); */
                 border: none;
                 max-width: 100px;
-                max-height: 30px;
+                max-height: 50px;
+                text-align: center;
+        }
+        select:hover {
+                box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.526);
         }
 
         .reset-filter {
@@ -233,14 +227,43 @@
                 background-color: rgb(26, 26, 25);
                 border: none;
                 color: var(--whiteGrey);
-                margin-top: 4px;
-                padding: 7px;
+                padding: 7px 10px;
+                max-height: 50px;
+                border-radius: 5px;
+                transition: 0.3s ease-in-out;
+                text-align: center;
+                margin-left: 5px;
+                font-weight: 500;
+                font-family: Jost;
+        }
+
+        .btn-grad {
+                background-size: 200% auto;
+                display: block;
+                background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+        }
+
+        .btn-grad:hover {
+                background-position: right center; /* change the direction of the change here */
         }
 
         @media screen and (max-width: 768px) {
-                /* .logo {
-                        width: 200px;
-                        z-index: 0;
-                } */
+                header {
+                        padding: 20px;
+                        background-color: rgb(249, 241, 242);
+                        height: auto;
+                        width: 100%;
+                        position: fixed;
+                }
+                .filter-controls {
+                        display: flex;
+                        justify-content: first baseline;
+                        flex-wrap: wrap;
+                        z-index: 10;
+                        height: 100px;
+                }
+                .reset-filter {
+                        margin-left: 0px;
+                }
         }
 </style>

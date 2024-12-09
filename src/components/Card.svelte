@@ -21,7 +21,7 @@
         <p class="id">{id}</p>
 
         <p class="lieu">{lieu}</p>
-        <a class="info-button" href={`/event/${id}`}>i</a>
+        <a class="info-button btn-grad" href={`/event/${id}`}>i</a>
         <p class="description">{description}</p>
 
         <!-- <div class="wrapper-horaire-tarif">
@@ -46,30 +46,41 @@
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
                 flex: 1 1 calc(50% - 20px); /* Chaque carte occupe 50% de la largeur moins l'espacement */
-                max-width: calc(40% - 20px);
-                height: 500px;
+                max-width: 30%;
+                min-height: 600px;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.276);
         }
         .info-button {
-                min-height: 30px;
-                min-width: 30px;
+                min-height: 40px;
+                min-width: 40px;
                 border-radius: 50%;
-                background-color: var(--ardoise);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 color: white;
                 text-decoration: none;
-                font-family: "Times New Roman";
-                box-shadow: 0px 0px 5px 1px rgb(158, 158, 158);
+                font-family: inter;
+                box-shadow: 0px 0px 5px 1px rgba(158, 158, 158, 0.599);
                 margin-top: 20px;
+                text-align: center;
+                font-weight: bold;
+                font-size: 1rem;
         }
+        .btn-grad {
+                background-size: 200% auto;
+                background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+        }
+
+        .btn-grad:hover {
+                background-position: right center; /* change the direction of the change here */
+        }
+
         .id {
                 display: none;
         }
         img {
-                width: auto;
-                height: 50%;
+                max-width: 100%;
+                height: 200px;
                 border-radius: 20px;
                 padding: 10px;
         }
@@ -115,10 +126,10 @@
                 font-weight: 900;
                 background-color: rgb(255, 77, 0);
                 color: white;
-                padding: 10px 15px;
+                padding: 20px 15px;
                 border-radius: 10px;
                 margin-top: 5px;
-                box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.394);
+                box-shadow: inset 0px 0px 10px 2px rgba(0, 0, 0, 0.492);
                 text-align: center;
         }
 
@@ -131,7 +142,7 @@
                         padding: 10px;
                         background-color: rgb(255, 255, 255);
                         min-width: 90%;
-                        min-height: 400px;
+                        min-height: auto;
                 }
                 img {
                         width: 70%;

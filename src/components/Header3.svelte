@@ -14,46 +14,7 @@
         }
 
         const categories = ["Boucherie-charcuterie", "Mode et accessoires", "Maison et décoration ", "Loisirs et culture", "Technologie et matériel", "Automobile", "Santé et bien-être", "Tourisme et loisirs"];
-        const objects = [
-  "Antiquaire",
-  "Bijoutier",
-  "Boulanger",
-  "Boucher",
-  "Caviste (vins et spiritueux)",
-  "Charcutier",
-  "Décorateur d'intérieur",
-  "Disquaire",
-  "Épicier",
-  "Esthéticien(ne)",
-  "Fleuriste",
-  "Fromager",
-  "Glacier",
-  "Herboriste",
-  "Horloger",
-  "Hôtelier",
-  "Informatique (PC, smartphones)",
-  "Libraire",
-  "Loueur de véhicules",
-  "Magasin de jeux vidéo",
-  "Marchand de journaux",
-  "Opticien",
-  "Parfumeur",
-  "Pâtissier",
-  "Pharmacien",
-  "Poissonnier",
-  "Primeur (fruits et légumes)",
-  "Quincailler",
-  "Restaurateur",
-  "Téléphonie mobile",
-  "Traiteur",
-  "Vendeur d'articles de sport",
-  "Vendeur de chaussures",
-  "Vendeur de meubles",
-  "Vendeur de prêt-à-porter",
-  "Vendeur d'électroménager"
-];
-
-
+        const objects = ["Antiquaire", "Bijoutier", "Boulanger", "Boucher", "Caviste (vins et spiritueux)", "Charcutier", "Décorateur d'intérieur", "Disquaire", "Épicier", "Esthéticien(ne)", "Fleuriste", "Fromager", "Glacier", "Herboriste", "Horloger", "Hôtelier", "Informatique (PC, smartphones)", "Libraire", "Loueur de véhicules", "Magasin de jeux vidéo", "Marchand de journaux", "Opticien", "Parfumeur", "Pâtissier", "Pharmacien", "Poissonnier", "Primeur (fruits et légumes)", "Quincailler", "Restaurateur", "Téléphonie mobile", "Traiteur", "Vendeur d'articles de sport", "Vendeur de chaussures", "Vendeur de meubles", "Vendeur de prêt-à-porter", "Vendeur d'électroménager"];
 
         const lieux = [
                 "Aveize",
@@ -113,17 +74,17 @@
 
 <header>
         <div class="wrapper-header">
-                <a href="/"><h1>...</h1></a>
+                <a href="/"><h1>. ... ....</h1></a>
                 <!-- <img class="logo" src={Flèche} alt="Logo" /> -->
                 <SuscriptionButton />
-                <button on:click={openCloseMenu}>
+                <button class="button-menu" on:click={openCloseMenu}>
                         <img class="svg-menu" src={svgMenu} alt="Menu" />
                 </button>
         </div>
 
         <div class="menu-container">
                 {#if menuVisible}
-                        <div class="menu" in:fly={{ x: 200, duration: 1000 }} out:fly={{ x: 200, duration: 1000 }}>
+                        <div class="menu" in:fly={{ x: 300, duration: 1000 }} out:fly={{ x: 300, duration: 1000 }}>
                                 <a href="/CardPubSpace">Publicités</a>
                                 <a href="/">Nous contacter</a>
                         </div>
@@ -155,7 +116,7 @@
                                 {/each}
                         </select>
                 </label>
-                <button class="reset-filter" on:click={resetFilters}>Réinitialiser les filtres</button>
+                <button class="reset-filter btn-grad" on:click={resetFilters}>Réinitialiser les filtres</button>
         </div>
 </header>
 
@@ -165,20 +126,21 @@
         .filters {
                 display: flex;
                 flex-direction: row;
+                flex-wrap: wrap;
                 align-items: center;
                 justify-content: center;
-                background-color: #ccc;
+                background-color: #e2e2e2;
                 height: auto;
-                width: 100%;
-                gap: 4px;
+                min-width: 100%;
+                gap: 5px;
         }
         label {
                 display: flex;
                 flex-direction: column;
         }
         header {
-                padding: 20px;
-                margin-top: -260px;
+                padding: 15px;
+                margin-top: 0px;
                 background-color: rgb(249, 241, 242);
                 max-height: 100px;
                 width: 100%;
@@ -190,9 +152,8 @@
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                padding: 10px;
-                z-index: 3;
-                position: fixed; /* Utilisez position: fixed pour que le menu soit au-dessus des autres éléments */
+                z-index: 20;
+                position: relative;
         }
 
         .menu {
@@ -201,10 +162,17 @@
                 align-items: center;
                 align-content: center;
                 gap: 30px;
+                box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%);
+                background-color: rgba(255, 255, 255, 0.6);
+                backdrop-filter: blur(15px);
                 padding: 30px 40px;
                 border-radius: 10px;
-                box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 10%);
-                background-color: var(--whiteGrey);
+                width: 300px;
+                height: 100%;
+                position: fixed;
+                top: 70px;
+                right: 0;
+                overflow: auto;
         }
 
         .wrapper-header {
@@ -213,23 +181,17 @@
                 justify-content: space-between;
         }
 
-         /* .logo {
-                height: 100px;
-        }  */
-
         .svg-menu {
-                height: 30px; /* Ajustez la taille de l'icône du menu */
+                height: 30px;
                 cursor: pointer;
         }
-        button {
-                background-color: transparent;
+        .button-menu {
                 border: none;
-                padding: 10px;
-                cursor: pointer;
-                margin-right: 10px;
+                background-color: transparent;
+                transition: 0.3s ease-in-out;
         }
-        button:hover {
-                background-color: rgb(211, 211, 213);
+        .button-menu:hover {
+                transform: scale(1.1);
         }
 
         h1 {
@@ -247,18 +209,14 @@
         a:hover {
                 color: #00bfff;
         }
-        /* .filter-controls {
-                display: flex;
-                justify-content: first baseline;
-                flex-wrap: wrap;
-                background-color: #ccc;
-        } */
+
         select {
                 padding: 5px 10px;
-               max-width: 100px;
+                max-width: 100px;
                 max-height: 30px;
                 border-radius: 5px;
                 border: 1px solid #ccc;
+                margin-top: 10px;
         }
         .reset-filter {
                 color: whitesmoke;
@@ -267,8 +225,16 @@
                 border-radius: 5px;
                 border: 1px solid #ccc;
                 background-color: #1c1c1c;
+                font-family: Jost;
+                font-weight: 500;
         }
-       
+        .btn-grad {
+                background-size: 200% auto;
+                display: block;
+                background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+        }
 
-       
+        .btn-grad:hover {
+                background-position: right center; /* change the direction of the change here */
+        }
 </style>

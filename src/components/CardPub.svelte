@@ -139,7 +139,7 @@
 
 <div class="card">
         <img class="image" src="https://images.pexels.com/photos/696205/pexels-photo-696205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-        <button class="button-infos" on:click={handleClick}>i</button>
+        <button class="button-infos btn-grad" on:click={handleClick}>i</button>
         <p class="id">{heading.id}</p>
         <p class="nom">{heading.nom}</p>
         <p class="object">{heading.object}</p>
@@ -160,26 +160,30 @@
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
+                flex: 1 1 calc(50% - 20px); /* Chaque carte occupe 50% de la largeur moins l'espacement */
+                max-width: calc(40% - 20px);
+                 min-height: 100%;
         }
         .image {
                 width: 90%;
                 height: 100%;
                 border-radius: 0px;
         }
-        
-         .button-infos {
-                min-height: 30px;
-                min-width: 30px;
+
+        .button-infos {
+                min-height: 40px;
+                min-width: 40px;
                 border-radius: 50%;
                 background-color: var(--ardoise);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 color: white;
+                border: none;
                 text-decoration: none;
                 font-family: "Times New Roman";
                 box-shadow: 0px 0px 5px 1px rgb(158, 158, 158);
-        } 
+        }
         .id {
                 display: none;
         }
@@ -196,7 +200,7 @@
         }
 
         .nom {
-                font-size: 2.5rem;
+                font-size: 2rem;
                 font-weight: 900;
                 letter-spacing: -0.9px;
                 color: var(--ardoise);
@@ -221,27 +225,16 @@
                 color: var(--ardoise);
                 margin-bottom: 10px;
         }
-
-        /* .informations {
-                background-color: var(--blue);
-                color: var(--whiteGrey);
-                padding: 8px 13px;
-                border-radius: 8px;
-                cursor: pointer;
-                border: 1px solid var(--secondary);
-                margin-top: 10px;
-                margin-bottom: 10px;
-                text-decoration: none;
-                font-size: 1rem;
-                text-transform: capitalize;
-                font-family: Inter;
-                font-weight: 300;
+      .btn-grad {
+                background-size: 200% auto;
+                background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
         }
 
-        .informations:hover {
-                background-color: var(--secondary);
-                color: var(--whiteGrey);
-        } */
+        .btn-grad:hover {
+                background-position: right center; /* change the direction of the change here */
+        }
+
+
 
         @media screen and (max-width: 768px) {
                 .card {
@@ -251,7 +244,8 @@
                         gap: 10px;
                         padding: 10px;
                         background-color: white;
-
+                        min-width: 90%;
+                        min-height: 100%;
                 }
                 img {
                         min-width: 95%;

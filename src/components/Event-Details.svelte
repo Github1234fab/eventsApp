@@ -2,7 +2,7 @@
         import { onMount } from "svelte";
         import { jsonDataByDate } from "../lib/store.js";
         import { page } from "$app/stores";
-        import Header2 from "./Header2.svelte";
+        import Header from "./Header2.svelte";
         import Return from "../assets/retour.png";
 
         let id;
@@ -70,17 +70,17 @@ END:VCALENDAR
 </script>
 
 <div class="wrapper-header">
-        <Header2 />
+        <Header />
 </div>
 
 {#if event}
         <div class="wrapper-details">
-                <div class="wrapper">
-                        <img class="image" src={event.image} alt="" />
-                        <a href="/"> <img src={Return} alt="" class="return" /></a>
-                </div>
-                <p class="date">{event.date}</p>
+                <!-- <div class="wrapper"> -->
+                <img class="image" src={event.image} alt="" />
 
+                <!-- </div> -->
+                <a class="btn-return-cal btn-grad" href="/">Retour au calendrier</a>
+                <p class="date">{event.date}</p>
                 <p class="id">{event.id}</p>
                 <p class="cat">{event.catégorie}</p>
                 <p class="lieu">{event.lieu}</p>
@@ -98,12 +98,12 @@ END:VCALENDAR
 
         <div class="wrapper-calendar">
                 <!-- <p>+ calendrier</p> -->
-                <a class="informations" href={event.lien} target="_blank">Information - réservation</a>
+                <a class="informations btn-grad" href={event.lien} target="_blank">Information - réservation</a>
                 <div class="wrapper-calendar--link-button">
-                        <button class="calendar--link-button" on:click={generateICS}>ICS</button>
-                        <a class="calendar--link-button" href={googleCalendarUrl} target="_blank">Google</a>
-                        <a class="calendar--link-button" href={outlookCalendarUrl} target="_blank">Outlook</a>
-                        <a class="calendar--link-button" href={yahooCalendarUrl} target="_blank">Yahoo</a>
+                        <button class="calendar--link-button btn-grad" on:click={generateICS}>ICS</button>
+                        <a class="calendar--link-button btn-grad" href={googleCalendarUrl} target="_blank">Google</a>
+                        <a class="calendar--link-button btn-grad" href={outlookCalendarUrl} target="_blank">Outlook</a>
+                        <a class="calendar--link-button btn-grad" href={yahooCalendarUrl} target="_blank">Yahoo</a>
                 </div>
         </div>
 {:else}
@@ -117,35 +117,33 @@ END:VCALENDAR
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 20px;
+                gap: 40px;
                 min-height: 100%;
-        }
-        .wrapper {
-                position: relative;
+                padding-top: 100px;
         }
 
         .id {
                 display: none;
         }
         .image {
-                width: 100%;
-                height: 100%;
+                max-width: 30%;
+                max-height: 50%;
         }
-        .return {
-                position: absolute;
-                bottom: -50px; /* Ajuster l'espacement sous l'image */
-                left: 80%;
-                /* transform: translateX(-90%); */
-                height: 40px;
-                width: 40px;
-                border-radius: 50%;
-                padding: 5px;
+        .btn-return-cal {
+                text-decoration: none;
+                color: whitesmoke;
+                font-family: Jost;
+                border-radius: 10px;
+                max-height: 100%;
+                max-width: 50%;
+                padding: 15px 20px;
                 background-color: var(--ardoise);
                 box-shadow: 0px 0px 5px 1px rgb(130, 130, 130);
                 transition: 0.3s ease-in-out;
                 margin-top: 20px;
+                text-align: center;
         }
-        .return:hover {
+        .btn-return-cal:hover {
                 border: grey 3px solid;
         }
         .date {
@@ -155,17 +153,18 @@ END:VCALENDAR
                 background-color: transparent;
                 color: rgb(212, 17, 17);
                 border: none;
-                padding: 8px 12px;
+                padding: 15px 20px;
                 border-radius: 5px;
-                position: relative;
+
                 margin-top: 50px;
+                border: 1px solid black;
         }
         .cat {
-                font-size: 1.9em;
-                font-weight: 900;
+                font-size: 1.5em;
+                font-weight: 500;
                 color: var(--ardoise);
                 text-transform: uppercase;
-                margin-top: -30px;
+                margin-top: 0px;
         }
         .lieu {
                 font-size: 1.5em;
@@ -177,16 +176,16 @@ END:VCALENDAR
 
         .description {
                 font-size: 1em;
-                font-weight: 400;
+                font-weight: 600;
                 letter-spacing: 3.9px;
                 color: var(--ardoise);
                 text-transform: uppercase;
-                margin-top: 10px;
+                margin-top: 0px;
         }
 
         .title {
-                font-size: 1rem;
-                font-weight: 600;
+                font-size: 1.5rem;
+                font-weight: 800;
                 letter-spacing: 1.2px;
                 margin-top: -20px;
         }
@@ -196,10 +195,10 @@ END:VCALENDAR
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 0px;
+                gap: 10px;
         }
         .p {
-                font-size: 0.9em;
+                font-size: 1em;
                 font-weight: 400;
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
@@ -209,17 +208,18 @@ END:VCALENDAR
                 font-weight: 300;
                 color: var(--ardoise);
                 letter-spacing: 0px;
-                margin-top: 20px;
-                padding: 10px;
+                margin-top: 90px;
+                padding: 50px;
                 text-align: center;
+                max-width: 60%;
+                margin: 0 auto;
         }
         .informations {
                 background-color: transparent;
-                color: var(--ardoise);
-                padding: 15px 13px;
+                color: whitesmoke;
+                padding: 20px 25px;
                 border-radius: 8px;
                 cursor: pointer;
-                border: 1px solid var(--secondary);
                 margin-top: 30px;
                 margin-bottom: 10px;
                 text-decoration: none;
@@ -244,19 +244,13 @@ END:VCALENDAR
                 align-items: center;
                 justify-content: space-around;
                 gap: 10px;
-                margin-top: 20px;
                 border: none;
                 padding: 10px;
                 border-radius: 10px;
-
                 max-width: 90%;
-                margin: 0 auto;
+                margin: 40px auto;
         }
-        /* .wrapper-calendar p {
-                font-size: 1rem;
-                text-transform: capitalize;
-                color: var(--ardoise);
-        } */
+
         .calendar--link-button {
                 display: flex;
                 align-items: center;
@@ -264,19 +258,19 @@ END:VCALENDAR
                 background: linear-gradient(45deg, var(--blue), var(--cta2));
                 color: var(--whiteGrey);
                 text-align: center;
-                height: 60px;
-                width: 60px;
+                height: 55px;
+                width: 55px;
                 padding: 35px;
                 border-radius: 50%;
                 cursor: pointer;
-                margin-top: 10px;
+                margin-top: 80px;
                 margin-bottom: 10px;
                 text-decoration: none;
                 font-size: 0.8rem;
                 text-transform: capitalize;
-                font-family: Inter;
+                font-family: Jost;
                 font-weight: 700;
-                border: none;
+                border: white 2px solid;
                 box-shadow: 0px 0px 5px rgb(48, 48, 48);
                 text-transform: capitalize;
                 transition: 0.8s ease;
@@ -290,18 +284,25 @@ END:VCALENDAR
                 gap: 20px;
                 margin-bottom: 100px;
         }
+        .btn-grad {
+                background-size: 200% auto;
+                background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+        }
+
+        .btn-grad:hover {
+                background-position: right center; /* change the direction of the change here */
+        }
 
         @media screen and (max-width: 768px) {
-                /* .wrapper-details{
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        gap: 10px;
-                        padding: 10px;
-                        background-color: white;
-                } */
                 .image {
                         min-width: 95%;
                 }
+                .details {
+                        max-width: 90%;
+                        padding: 20px;
+                }
+                .wrapper-calendar--link-button{
+                        gap: 7px;
         }
+}
 </style>
