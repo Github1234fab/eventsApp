@@ -13,9 +13,9 @@
 </script>
 
 <div class="card">
+        <img src={image} alt="" />
         <p class="date">{new Date(date).toLocaleDateString("fr-FR")}</p>
         <p class="cat">{catégorie}</p>
-        <img src={image} alt="" />
 
         <p class="title">"{titre}"</p>
         <p class="id">{id}</p>
@@ -65,6 +65,7 @@
                 text-align: center;
                 font-weight: bold;
                 font-size: 1rem;
+                margin-bottom: 20px;
         }
         .btn-grad {
                 background-size: 200% auto;
@@ -95,8 +96,8 @@
         }
 
         .cat {
-                font-size: 1em;
-                font-weight: 700;
+                font-size: 1.4em;
+                font-weight: 500;
                 color: var(--ardoise);
                 text-transform: uppercase;
                 text-align: center;
@@ -112,8 +113,8 @@
         }
 
         .title {
-                font-size: 1.3rem;
-                font-weight: 600;
+                font-size: 1rem;
+                font-weight: 400;
                 color: var(--ardoise);
                 text-transform: uppercase;
                 width: 100%;
@@ -122,17 +123,20 @@
         }
 
         .date {
-                font-family: Roboto;
-                font-size: 2em;
+                font-family: Jost;
+                font-size: 3em;
                 text-transform: uppercase;
                 font-weight: 900;
-                background-color: rgb(255, 77, 0);
-                color: white;
+                /* background-color: rgb(255, 77, 0); */
+                /* color: white; */
+                color: red;
                 padding: 20px 15px;
                 border-radius: 10px;
                 margin-top: 5px;
-                box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.492);
+                /* box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.492); */
                 text-align: center;
+                margin-bottom: 10px;
+                letter-spacing: -3px;
         }
 
         @media screen and (max-width: 768px) {
@@ -144,16 +148,16 @@
                         padding: 10px;
                         background-color: rgb(255, 255, 255);
                         min-width: 90%;
-                        min-height: auto;
+                        min-height: 500px;
                 }
                 img {
-                        min-width: 70%;
+                        min-width: 100%;
                         height: auto;
                         border-radius: 20px;
                         padding: 10px;
                 }
                 .date {
-                        font-size: 1.5em;
+                        font-size: 2.2em;
                 }
         }
 </style>

@@ -77,15 +77,16 @@ END:VCALENDAR
         <div class="wrapper-details">
                 <!-- <div class="wrapper"> -->
                 <img class="image" src={event.image} alt="" />
+                   
 
                 <!-- </div> -->
-                <a class="btn-return-cal btn-grad" href="/">Retour au calendrier</a>
+              
                 <p class="date">{event.date}</p>
                 <p class="id">{event.id}</p>
                 <p class="cat">{event.catégorie}</p>
                 <p class="lieu">{event.lieu}</p>
                 <p class="title">{event.titre}</p>
-                <p class="description">{event.description}</p>
+                <p class="details">{event.description}</p>
                 <div class="wrapper-horaire-tarif">
                         <p class="p">Horaire début: {event.début}</p>
                         <p class="p">Horaire fin: {event.fin}</p>
@@ -93,10 +94,8 @@ END:VCALENDAR
                 </div>
         </div>
 
-        <p class="details">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic perferendis quia eveniet magni dolor rerum dolorum ad, facilis amet recusandae, ullam placeat provident laudantium iusto, vitae cumque necessitatibus voluptates eum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus distinctio recusandae iusto consectetur doloremque harum esse, veniam atque neque quibusdam inventore explicabo dolores commodi ipsum perferendis ducimus hic quidem.</p>
 
         <div class="wrapper-calendar">
-                <!-- <p>+ calendrier</p> -->
                 <a class="informations btn-grad" href={event.lien} target="_blank">Information - réservation</a>
                 <div class="wrapper-calendar--link-button">
                         <button class="calendar--link-button btn-grad" on:click={generateICS}>ICS</button>
@@ -104,6 +103,7 @@ END:VCALENDAR
                         <a class="calendar--link-button btn-grad" href={outlookCalendarUrl} target="_blank">Outlook</a>
                         <a class="calendar--link-button btn-grad" href={yahooCalendarUrl} target="_blank">Yahoo</a>
                 </div>
+                       <a class="btn-return-cal " href="/">Retour au calendrier</a>
         </div>
 {:else}
         <p>Chargement...</p>
@@ -116,7 +116,7 @@ END:VCALENDAR
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 40px;
+                gap: 20px;
                 min-height: 100%;
                 padding-top: 100px;
         }
@@ -139,7 +139,7 @@ END:VCALENDAR
                 background-color: var(--ardoise);
                 box-shadow: 0px 0px 5px 1px rgb(130, 130, 130);
                 transition: 0.3s ease-in-out;
-                margin-top: 20px;
+                margin-top: 0px;
                 text-align: center;
         }
         .btn-return-cal:hover {
@@ -155,7 +155,7 @@ END:VCALENDAR
                 padding: 15px 20px;
                 border-radius: 5px;
 
-                margin-top: 50px;
+                margin-top: 0px;
                 border: 1px solid black;
         }
         .cat {
@@ -170,23 +170,15 @@ END:VCALENDAR
                 font-weight: 400;
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
-                margin-top: 0px;
+                            margin-top: -10px;
         }
 
-        .description {
-                font-size: 1em;
-                font-weight: 600;
-                letter-spacing: 3.9px;
-                color: var(--ardoise);
-                text-transform: uppercase;
-                margin-top: 0px;
-        }
 
         .title {
                 font-size: 1.5rem;
                 font-weight: 800;
                 letter-spacing: 1.2px;
-                margin-top: -20px;
+                margin-top: -10px;
         }
 
         .wrapper-horaire-tarif {
@@ -216,7 +208,7 @@ END:VCALENDAR
         .informations {
                 background-color: transparent;
                 color: whitesmoke;
-                padding: 20px 25px;
+                padding: 40px 25px;
                 border-radius: 8px;
                 cursor: pointer;
                 margin-top: 30px;
@@ -224,9 +216,9 @@ END:VCALENDAR
                 text-decoration: none;
                 font-size: 1rem;
                 text-transform: capitalize;
-                font-family: Inter;
-                font-weight: 300;
-                box-shadow: 0px 0px 5px rgba(48, 48, 48, 0.37);
+                font-family: Jost;
+                font-weight: 500;
+                box-shadow: 0px 0px 10px 2px rgba(48, 48, 48, 0.577);
                 transition: 0.2s ease-in-out;
         }
 
@@ -247,7 +239,7 @@ END:VCALENDAR
                 padding: 10px;
                 border-radius: 10px;
                 max-width: 90%;
-                margin: 40px auto;
+                margin: 20px auto;
         }
 
         .calendar--link-button {
@@ -262,7 +254,7 @@ END:VCALENDAR
                 padding: 35px;
                 border-radius: 50%;
                 cursor: pointer;
-                margin-top: 80px;
+                margin-top: 40px;
                 margin-bottom: 10px;
                 text-decoration: none;
                 font-size: 0.8rem;
@@ -281,7 +273,7 @@ END:VCALENDAR
                 display: flex;
                 flex-direction: rows;
                 gap: 20px;
-                margin-bottom: 100px;
+                margin-bottom: 20px;
         }
         .btn-grad {
                 background-size: 200% auto;
