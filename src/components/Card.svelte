@@ -79,8 +79,10 @@
                 display: none;
         }
         img {
-                max-width: 100%;
-                height: 200px;
+                /* max-width: 100%;
+                height: 200px; */
+                width: 80%;
+                max-height: 500px;
                 border-radius: 20px;
                 padding: 10px;
         }
@@ -129,7 +131,7 @@
                 padding: 20px 15px;
                 border-radius: 10px;
                 margin-top: 5px;
-                box-shadow: inset 0px 0px 10px 2px rgba(0, 0, 0, 0.492);
+                box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.492);
                 text-align: center;
         }
 
@@ -145,8 +147,8 @@
                         min-height: auto;
                 }
                 img {
-                        width: 70%;
-                        height: 50%;
+                        min-width: 70%;
+                        height: auto;
                         border-radius: 20px;
                         padding: 10px;
                 }

@@ -84,7 +84,6 @@ END:VCALENDAR
                 <p class="id">{event.id}</p>
                 <p class="cat">{event.catégorie}</p>
                 <p class="lieu">{event.lieu}</p>
-
                 <p class="title">{event.titre}</p>
                 <p class="description">{event.description}</p>
                 <div class="wrapper-horaire-tarif">

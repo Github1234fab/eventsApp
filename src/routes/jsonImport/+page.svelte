@@ -53,6 +53,9 @@
 <DeleteBdd />
 
 
+
+<!-- règles restreintes -->
+
 <!-- rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -67,6 +70,10 @@ service cloud.firestore {
     }
   }
 } 
+
+
+
+règles ouvertes
 
 
 rules_version = '2';

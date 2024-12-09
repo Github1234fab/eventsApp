@@ -23,11 +23,10 @@
         <div class="card-detail">
                 <h1 class="nom">{selectedHeading.nom}</h1>
                 <img class="image" src="https://images.pexels.com/photos/696205/pexels-photo-696205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                   <p class="description">{selectedHeading.description}</p>
+                <p class="description">{selectedHeading.description}</p>
                 <p class="object">{selectedHeading.object}</p>
                 <p class="lieu">{selectedHeading.lieu}</p>
-                <p class="text-description">{selectedHeading.txt}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat, ipsum distinctio sit cupiditate expedita beatae illo magnam, minima, possimus alias consequatur sed? Error ducimus dolorum, deleniti sunt voluptatem excepturi!
-                Vel inventore in sequi iste minus fugit sit, reprehenderit impedit perferendis nulla laboriosam tenetur dolor dolore a adipisci earum unde. Soluta reprehenderit fugit, eveniet consequatur dolorem veritatis deleniti quisquam laboriosam!</p>
+                <p class="text-description">{selectedHeading.txt}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat, ipsum distinctio sit cupiditate expedita beatae illo magnam, minima, possimus alias consequatur sed? Error ducimus dolorum, deleniti sunt voluptatem excepturi! Vel inventore in sequi iste minus fugit sit, reprehenderit impedit perferendis nulla laboriosam tenetur dolor dolore a adipisci earum unde. Soluta reprehenderit fugit, eveniet consequatur dolorem veritatis deleniti quisquam laboriosam!</p>
                 <a class="informations" href={selectedHeading.lien} target="_blank">Site du commerçant</a>
         </div>
 {:else}
@@ -46,7 +45,7 @@
                 border: none;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
-           height: 100vh;
+                height: 100vh;
                 /* margin-top: 200px; */
         }
         .image {
@@ -115,7 +114,7 @@
                 letter-spacing: 0px;
                 color: var(--ardoise);
                 line-height: 30px;
-                padding: 10px;  
+                padding: 10px;
         }
 
         @media screen and (max-width: 768px) {
@@ -127,6 +126,7 @@
                         padding: 10px;
                         background-color: white;
                         height: auto;
+                 padding-top: 100px;
                 }
                 img {
                         min-width: 95%;

@@ -14,7 +14,7 @@
         }
 
         const categories = ["Boucherie-charcuterie", "Mode et accessoires", "Maison et décoration ", "Loisirs et culture", "Technologie et matériel", "Automobile", "Santé et bien-être", "Tourisme et loisirs"];
-        const objects = ["Antiquaire", "Bijoutier", "Boulanger", "Boucher", "Caviste (vins et spiritueux)", "Charcutier", "Décorateur d'intérieur", "Disquaire", "Épicier", "Esthéticien(ne)", "Fleuriste", "Fromager", "Glacier", "Herboriste", "Horloger", "Hôtelier", "Informatique (PC, smartphones)", "Libraire", "Loueur de véhicules", "Magasin de jeux vidéo", "Marchand de journaux", "Opticien", "Parfumeur", "Pâtissier", "Pharmacien", "Poissonnier", "Primeur (fruits et légumes)", "Quincailler", "Restaurateur", "Téléphonie mobile", "Traiteur", "Vendeur d'articles de sport", "Vendeur de chaussures", "Vendeur de meubles", "Vendeur de prêt-à-porter", "Vendeur d'électroménager"];
+        const objects = ["Antiquaire", "Bijoutier", "Boulanger", "Boucher", "Caviste (vins et spiritueux)", "Charcutier", "Décorateur d'intérieur", "Disquaire", "Épicier", "Esthéticien(ne)", "Fleuriste", "Fromager", "Glacier", "Herboriste", "Horloger", "Hôtelier", "Informatique (PC, smartphones)", "Libraire", "Loueur de véhicules", "Magasin de jeux vidéo", "Marchand de journaux", "Opticien", "Parfumeur", "Pâtissier", "Pharmacien", "Poissonnier", "Primeur (fruits et légumes)", "Quincailler", "Restaurateur", "Téléphonie mobile", "Traiteur", "Vendeur d'articles de sport", "Chaussures", "Vendeur de meubles", "Prêt-à-porter", "Électroménager"];
 
         const lieux = [
                 "Aveize",

@@ -24,6 +24,7 @@
                 "Brussieu",
                 "Chabanière",
                 "Chambost Longessaigne",
+                "Chazelle",
                 "Chapelle sur Coise, La",
                 "Châtelus",
                 "Chaussan",
