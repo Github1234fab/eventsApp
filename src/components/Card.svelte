@@ -46,8 +46,8 @@
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
                 flex: 1 1 calc(50% - 20px); /* Chaque carte occupe 50% de la largeur moins l'espacement */
-                max-width: 30%;
-                min-height: 600px;
+                max-width: 40%;
+                max-height: 600px;
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.276);
         }
         .info-button {
@@ -82,8 +82,8 @@
         img {
                 /* max-width: 100%;
                 height: 200px; */
-                width: 80%;
-                max-height: 500px;
+                width: auto;
+                max-height: 200px;
                 border-radius: 20px;
                 padding: 10px;
         }
@@ -124,20 +124,27 @@
 
         .date {
                 font-family: Jost;
-                font-size: 3em;
+                font-size: 2em;
                 text-transform: uppercase;
                 font-weight: 900;
-                background-color: rgb(212, 64, 1); 
-                color: white; 
+                background-color: rgb(212, 64, 1);
+                color: white;
+                max-width: 100%;
                 /* border: 3px solid rgb(208, 205, 205); */
                 /* color: red; */
-                padding: 20px 15px;
+                padding: 20px 20px;
                 border-radius: 10px;
                 margin-top: 5px;
                 /* box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.492); */
                 text-align: center;
                 margin-bottom: 10px;
                 letter-spacing: -3px;
+        }
+
+        @media screen and (min-width: 1400px) {
+                .card {
+                        max-width: 30%;
+                }
         }
 
         @media screen and (max-width: 768px) {
@@ -152,7 +159,7 @@
                         min-height: 500px;
                 }
                 img {
-                        min-width: 100%;
+                        min-width: auto;
                         height: auto;
                         border-radius: 20px;
                         padding: 10px;
