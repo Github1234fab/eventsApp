@@ -21,13 +21,14 @@
 </script>
 
 <div class="card">
-        <img class="image" src="https://images.pexels.com/photos/696205/pexels-photo-696205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-        <button class="button-infos btn-grad" on:click={handleClick}>i</button>
+        <img class="image" src={heading.img} alt="" />
+     
         <p class="id">{heading.id}</p>
         <p class="nom">{heading.nom}</p>
         <p class="object">{heading.object}</p>
         <p class="lieu">{heading.lieu}</p>
-        <p class="description">{heading.description}</p>
+           <button class="button-infos btn-grad" on:click={handleClick}>i</button>
+        <!-- <p class="description">{heading.description}</p> -->
         <!-- <a class="informations" href={heading.lien} target="_blank">Site de l'annonceur</a> -->
 </div>
 
@@ -36,15 +37,15 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 10px;
+                gap: 20px;
                 padding: 10px;
                 border-radius: 8px;
                 background-color: white;
-                border: none;
-                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+                border: 3px solid rgb(167, 110, 3);
+                /* box-shadow: 0px 0px 10px  rgba(0, 0, 0, 0.632); */
                 text-decoration: none;
                 flex: 1 1 calc(50% - 20px);
-                max-width: calc(40% - 20px);
+                max-width: calc(50% - 20px);
                  min-height: 100%;
         }
         .image {
@@ -66,6 +67,8 @@
                 text-decoration: none;
                 font-family: "Times New Roman";
                 box-shadow: 0px 0px 5px 1px rgb(158, 158, 158);
+                margin-top: 30px;
+                margin-bottom: 50px;
         }
         .id {
                 display: none;
@@ -83,10 +86,15 @@
         }
 
         .nom {
-                font-size: 2rem;
+                font-size: 3rem;
                 font-weight: 900;
                 letter-spacing: -0.9px;
-                color: var(--ardoise);
+                color: white;
+                background-color: rgb(207, 136, 4);
+                margin-top: 50px;
+                text-align: center;
+                padding: 30px 20px;
+
         }
         .object {
                 font-size: 1.6rem;
@@ -101,13 +109,13 @@
                 color: var(--ardoise);
                 text-transform: capitalize;
         } */
-        .description {
+        /* .description {
                 font-size: 1em;
                 font-weight: 300;
                 letter-spacing: 0px;
                 color: var(--ardoise);
                 margin-bottom: 10px;
-        }
+        } */
       .btn-grad {
                 background-size: 200% auto;
                 background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
@@ -127,7 +135,7 @@
                         gap: 10px;
                         padding: 10px;
                         background-color: white;
-                        min-width: 90%;
+                        min-width: 100%;
                         min-height: 100%;
                 }
                 img {

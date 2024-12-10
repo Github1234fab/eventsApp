@@ -77,10 +77,9 @@ END:VCALENDAR
         <div class="wrapper-details">
                 <!-- <div class="wrapper"> -->
                 <img class="image" src={event.image} alt="" />
-                   
 
                 <!-- </div> -->
-              
+
                 <p class="date">{event.date}</p>
                 <p class="id">{event.id}</p>
                 <p class="cat">{event.catégorie}</p>
@@ -94,7 +93,6 @@ END:VCALENDAR
                 </div>
         </div>
 
-
         <div class="wrapper-calendar">
                 <a class="informations btn-grad" href={event.lien} target="_blank">Information - réservation</a>
                 <div class="wrapper-calendar--link-button">
@@ -103,7 +101,7 @@ END:VCALENDAR
                         <a class="calendar--link-button btn-grad" href={outlookCalendarUrl} target="_blank">Outlook</a>
                         <a class="calendar--link-button btn-grad" href={yahooCalendarUrl} target="_blank">Yahoo</a>
                 </div>
-                       <a class="btn-return-cal " href="/">Retour au calendrier</a>
+                <a class="btn-return-cal" href="/"><img class="return-img" src={Return} alt="" />Retour au calendrier</a>
         </div>
 {:else}
         <p>Chargement...</p>
@@ -129,34 +127,41 @@ END:VCALENDAR
                 max-height: 50%;
         }
         .btn-return-cal {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 text-decoration: none;
                 color: whitesmoke;
                 font-family: Jost;
-                border-radius: 10px;
-                max-height: 100%;
-                max-width: 50%;
+                border-radius: 50%;
+                height: 150px;
+                width: 150px;
                 padding: 15px 20px;
                 background-color: var(--ardoise);
-                box-shadow: 0px 0px 5px 1px rgb(130, 130, 130);
+                box-shadow: 0px 0px 15px rgb(50, 50, 50);
                 transition: 0.3s ease-in-out;
                 margin-top: 0px;
                 text-align: center;
+                border: 2px solid white;
         }
         .btn-return-cal:hover {
                 border: grey 3px solid;
+        }
+        .return-img {
+                height: 50px;
+                width: 50px;
         }
         .date {
                 font-size: 2em;
                 text-transform: uppercase;
                 font-weight: 900;
-                background-color: transparent;
-                color: rgb(212, 17, 17);
+                background-color: rgb(212, 64, 1);
+                color: white;
                 border: none;
-                padding: 15px 20px;
+                padding: 20px 30px;
                 border-radius: 5px;
-
                 margin-top: 0px;
-                border: 1px solid black;
         }
         .cat {
                 font-size: 1.5em;
@@ -170,9 +175,8 @@ END:VCALENDAR
                 font-weight: 400;
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
-                            margin-top: -10px;
+                margin-top: -10px;
         }
-
 
         .title {
                 font-size: 1.5rem;
@@ -218,7 +222,7 @@ END:VCALENDAR
                 text-transform: capitalize;
                 font-family: Jost;
                 font-weight: 500;
-                box-shadow: 0px 0px 10px 2px rgba(48, 48, 48, 0.577);
+                box-shadow: 0px 0px 10px rgba(48, 48, 48, 0.577);
                 transition: 0.2s ease-in-out;
         }
 
@@ -292,8 +296,8 @@ END:VCALENDAR
                         max-width: 90%;
                         padding: 20px;
                 }
-                .wrapper-calendar--link-button{
+                .wrapper-calendar--link-button {
                         gap: 7px;
+                }
         }
-}
 </style>

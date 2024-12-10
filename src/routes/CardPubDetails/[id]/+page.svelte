@@ -22,12 +22,11 @@
 {#if selectedHeading}
         <div class="card-detail">
                 <h1 class="nom">{selectedHeading.nom}</h1>
-                <img class="image" src="https://images.pexels.com/photos/696205/pexels-photo-696205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                <img class="image" src={selectedHeading.img} alt="" />
                 <p class="description">{selectedHeading.description}</p>
                 <p class="object">{selectedHeading.object}</p>
                 <p class="lieu">{selectedHeading.lieu}</p>
-                <p class="text-description">{selectedHeading.txt}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim fugiat, ipsum distinctio sit cupiditate expedita beatae illo magnam, minima, possimus alias consequatur sed? Error ducimus dolorum, deleniti sunt voluptatem excepturi! Vel inventore in sequi iste minus fugit sit, reprehenderit impedit perferendis nulla laboriosam tenetur dolor dolore a adipisci earum unde. Soluta reprehenderit fugit, eveniet consequatur dolorem veritatis deleniti quisquam laboriosam!</p>
-                <a class="informations" href={selectedHeading.lien} target="_blank">Site du commerçant</a>
+                <a class="informations btn-grad" href={selectedHeading.lien} target="_blank">Site du commerçant</a>
         </div>
 {:else}
         <p>Chargement...</p>
@@ -46,6 +45,7 @@
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
                 text-decoration: none;
                 height: 100vh;
+                /* margin-bottom: 100px; */
                 /* margin-top: 200px; */
         }
         .image {
@@ -80,42 +80,45 @@
                 color: var(--ardoise);
         }
 
-        .description {
-                font-size: 1em;
-                font-weight: 300;
-                letter-spacing: 0px;
-                color: var(--ardoise);
-        }
-
+    
         .informations {
-                background-color: var(--blue);
                 color: var(--whiteGrey);
-                padding: 15px 20px;
-                border-radius: 8px;
+
+                padding: 30px 25px;
+                border-radius: 10px;
                 cursor: pointer;
-                border: 1px solid var(--secondary);
                 margin-top: 10px;
                 margin-bottom: 10px;
                 text-decoration: none;
                 font-size: 1rem;
                 text-transform: capitalize;
-                font-family: Inter;
-                font-weight: 300;
-                margin-bottom: 100px;
+                font-family: Jost;
+                font-weight: 500;
         }
 
         .informations:hover {
                 background-color: var(--secondary);
                 color: var(--whiteGrey);
         }
-        .text-description {
-                font-size: 1em;
+        .description {
+                font-size: 1rem;
                 font-weight: 400;
                 letter-spacing: 0px;
                 color: var(--ardoise);
                 line-height: 30px;
                 padding: 10px;
+                text-align: center;
+                min-width: 80%;
         }
+              .btn-grad {
+                background-size: 200% auto;
+                background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+        }
+
+        .btn-grad:hover {
+                background-position: right center; /* change the direction of the change here */
+        }
+
 
         @media screen and (max-width: 768px) {
                 .card-detail {

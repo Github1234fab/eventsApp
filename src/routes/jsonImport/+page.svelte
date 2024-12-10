@@ -31,7 +31,7 @@
             docData.id = Number(docData.id); // Ensure id is a number
           }
           console.log('Processing document:', docData);
-          const docRef = doc(collection(db, 'BDDjson'), docData.id.toString()); // Firestore requires document IDs to be strings
+          const docRef = doc(collection(db, 'BDDPub'), docData.id.toString()); // Firestore requires document IDs to be strings
           batch.set(docRef, docData);
         });
 

@@ -5,7 +5,7 @@
   // Fonction pour supprimer tous les documents d'une collection
   async function deleteAllDocuments() {
     try {
-      const collectionRef = collection(db, 'BDDjson'); // Référence à la collection
+      const collectionRef = collection(db, 'BDDPub'); // Référence à la collection
       const snapshot = await getDocs(collectionRef); // Récupérer les documents
 
       // Vérifie s'il y a des documents à supprimer
@@ -16,7 +16,7 @@
 
       // Supprimer chaque document un par un
       for (let document of snapshot.docs) {
-        await deleteDoc(doc(db, 'BDDjson', document.id)); // Utilisation de await pour attendre la suppression
+        await deleteDoc(doc(db, 'BDDPub', document.id)); // Utilisation de await pour attendre la suppression
         console.log(`Document ${document.id} supprimé.`);
       }
       console.log("Tous les documents ont été supprimés.");

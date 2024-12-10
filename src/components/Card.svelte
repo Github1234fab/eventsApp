@@ -127,9 +127,10 @@
                 font-size: 3em;
                 text-transform: uppercase;
                 font-weight: 900;
-                /* background-color: rgb(255, 77, 0); */
-                /* color: white; */
-                color: red;
+                background-color: rgb(212, 64, 1); 
+                color: white; 
+                /* border: 3px solid rgb(208, 205, 205); */
+                /* color: red; */
                 padding: 20px 15px;
                 border-radius: 10px;
                 margin-top: 5px;
