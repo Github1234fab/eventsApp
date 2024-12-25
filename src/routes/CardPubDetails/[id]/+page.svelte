@@ -3,6 +3,7 @@
         import { headingsTab } from "../../../lib/storeAdvertisement.js"; // Remplacez par le chemin correct
         import { get } from "svelte/store";
         import Header2 from "../../../components/Header2.svelte";
+        import Return from "../../../assets/retour.png";
 
         let id;
         let selectedHeading;
@@ -27,6 +28,7 @@
                 <p class="object">{selectedHeading.object}</p>
                 <p class="lieu">{selectedHeading.lieu}</p>
                 <a class="informations btn-grad" href={selectedHeading.lien} target="_blank">Site du commerçant</a>
+                <div class="wrapper__btn-return"><a class="btn-return-cal" href="/CardPubSpace"><img class="return-img" src={Return} alt="" /></a> </div>
         </div>
 {:else}
         <p>Chargement...</p>
@@ -80,10 +82,8 @@
                 color: var(--ardoise);
         }
 
-    
         .informations {
                 color: var(--whiteGrey);
-
                 padding: 30px 25px;
                 border-radius: 10px;
                 cursor: pointer;
@@ -110,7 +110,7 @@
                 text-align: center;
                 min-width: 80%;
         }
-              .btn-grad {
+        .btn-grad {
                 background-size: 200% auto;
                 background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
         }
@@ -118,7 +118,37 @@
         .btn-grad:hover {
                 background-position: right center; /* change the direction of the change here */
         }
-
+.wrapper__btn-return {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+        }
+        .btn-return-cal {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                color: whitesmoke;
+                font-family: Jost;
+                border-radius: 50%;
+                height: 150px;
+                width: 150px;
+                padding: 15px 20px;
+                background-color: var(--ardoise);
+                box-shadow: 0px 0px 15px rgb(50, 50, 50);
+                transition: 0.3s ease-in-out;
+                margin: 40px;
+                text-align: center;
+                border: 2px solid white;
+        }
+        .btn-return-cal:hover {
+                border: grey 3px solid;
+        }
+        .return-img {
+                height: auto;
+        }
 
         @media screen and (max-width: 768px) {
                 .card-detail {
@@ -129,7 +159,7 @@
                         padding: 10px;
                         background-color: white;
                         height: auto;
-                 padding-top: 100px;
+                        padding-top: 100px;
                 }
                 img {
                         min-width: 95%;

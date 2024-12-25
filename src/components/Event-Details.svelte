@@ -90,9 +90,9 @@ END:VCALENDAR
                 <p class="title">{event.titre}</p>
                 <p class="details">{event.description}</p>
                 <div class="wrapper-horaire-tarif">
-                        <p class="p">Horaire début: {event.début}</p>
-                        <p class="p">Horaire fin: {event.fin}</p>
-                        <p class="p">Tarif: {event.tarif}</p>
+                        <p class="p">Horaire début: <span>{event.début}</span></p>
+                        <p class="p">Horaire fin:<span>{event.fin}</span></p>
+                        <p class="p">Tarif: <span>{event.tarif}</span></p>
                 </div>
                 <a class="informations btn-grad" href={event.lien} target="_blank">Information - réservation</a>
         </div>
@@ -206,13 +206,16 @@ END:VCALENDAR
                 gap: 10px;
         }
         .p {
-                font-size: 1em;
+                font-size: 1.2em;
                 font-weight: 400;
                 color: var(--ardoise);
                 letter-spacing: -0.9px;
         }
+        .p span {
+                font-weight: 700;
+        }
         .details {
-                font-size: 1rem;
+                font-size: 1.2rem;
                 font-weight: 300;
                 color: var(--ardoise);
                 letter-spacing: 0px;

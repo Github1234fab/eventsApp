@@ -27,7 +27,7 @@
         <p class="nom">{heading.nom}</p>
         <p class="object">{heading.object}</p>
         <p class="lieu">{heading.lieu}</p>
-           <button class="button-infos btn-grad" on:click={handleClick}>i</button>
+           <button class="button-infos btn-grad" on:click={handleClick}>+ info</button>
         <!-- <p class="description">{heading.description}</p> -->
         <!-- <a class="informations" href={heading.lien} target="_blank">Site de l'annonceur</a> -->
 </div>
@@ -55,21 +55,24 @@
         }
 
         .button-infos {
-                min-height: 40px;
-                min-width: 40px;
-                border-radius: 50%;
-                background-color: var(--ardoise);
+                height: 65px;
+                width: 65px;
+                text-decoration: none;
+                text-align: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                border-radius: 50%;
                 color: white;
+                box-shadow: 0px 0px 5px 1px rgba(158, 158, 158, 0.599);
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                font-size: 1rem;
+                cursor: pointer;
+                margin: 20px;
                 border: none;
-                text-decoration: none;
-                font-family: "Times New Roman";
-                box-shadow: 0px 0px 5px 1px rgb(158, 158, 158);
-                margin-top: 30px;
-                margin-bottom: 50px;
         }
+        
         .id {
                 display: none;
         }
@@ -89,9 +92,9 @@
                 font-size: 3rem;
                 font-weight: 900;
                 letter-spacing: -0.9px;
-                color: white;
-                background-color: rgb(207, 136, 4);
-                margin-top: 50px;
+                color: var(--ardoise);
+                /* background-color: rgb(207, 136, 4); */
+                margin-top: 0px;
                 text-align: center;
                 padding: 30px 20px;
 

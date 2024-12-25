@@ -21,7 +21,7 @@
         <p class="id">{id}</p>
 
         <p class="lieu">{lieu}</p>
-        <a class="info-button btn-grad" href={`/event/${id}`}>+</a>
+        <a class="info-button btn-grad" href={`/event/${id}`}>+ info</a>
         <p class="description">{description}</p>
 
         <!-- <div class="wrapper-horaire-tarif">
@@ -63,7 +63,7 @@
                 box-shadow: 0px 0px 5px 1px rgba(158, 158, 158, 0.599);
                 font-family: Arial, Helvetica, sans-serif;
                 font-weight: bold;
-                font-size: 4rem;
+                font-size: 1rem;
                 cursor: pointer;
                 margin: 20px;
         }
