@@ -21,7 +21,7 @@
         <p class="id">{id}</p>
 
         <p class="lieu">{lieu}</p>
-        <a class="info-button btn-grad" href={`/event/${id}`}>i</a>
+        <a class="info-button btn-grad" href={`/event/${id}`}>+</a>
         <p class="description">{description}</p>
 
         <!-- <div class="wrapper-horaire-tarif">
@@ -51,21 +51,21 @@
                 box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.276);
         }
         .info-button {
-                min-height: 40px;
-                min-width: 40px;
-                border-radius: 50%;
+                height: 65px;
+                width: 65px;
+                text-decoration: none;
+                text-align: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                border-radius: 50%;
                 color: white;
-                text-decoration: none;
-                font-family: inter;
                 box-shadow: 0px 0px 5px 1px rgba(158, 158, 158, 0.599);
-                margin-top: 20px;
-                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
                 font-weight: bold;
-                font-size: 1rem;
-                margin-bottom: 20px;
+                font-size: 4rem;
+                cursor: pointer;
+                margin: 20px;
         }
         .btn-grad {
                 background-size: 200% auto;

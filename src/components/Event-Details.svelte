@@ -4,6 +4,9 @@
         import { page } from "$app/stores";
         import Header from "./Header2.svelte";
         import Return from "../assets/retour.png";
+        import Calendar from "../assets/calendar.png";
+        import GoogleCal from "../assets/googleCal.png";
+        import Outlook from "../assets/Outlook.png";
 
         let id;
         let event;
@@ -91,15 +94,25 @@ END:VCALENDAR
                         <p class="p">Horaire fin: {event.fin}</p>
                         <p class="p">Tarif: {event.tarif}</p>
                 </div>
+                <a class="informations btn-grad" href={event.lien} target="_blank">Information - réservation</a>
         </div>
 
         <div class="wrapper-calendar">
-                <a class="informations btn-grad" href={event.lien} target="_blank">Information - réservation</a>
+                <h2 class="wrapper-calendar__h3">Ajoutez cet événement à votre calendrier préféré</h2>
                 <div class="wrapper-calendar--link-button">
-                        <button class="calendar--link-button btn-grad" on:click={generateICS}>ICS</button>
-                        <a class="calendar--link-button btn-grad" href={googleCalendarUrl} target="_blank">Google</a>
-                        <a class="calendar--link-button btn-grad" href={outlookCalendarUrl} target="_blank">Outlook</a>
-                        <a class="calendar--link-button btn-grad" href={yahooCalendarUrl} target="_blank">Yahoo</a>
+                        <div class="wrapper__button-link">
+                                <button class="calendar--link-button" on:click={generateICS}><img class="img-button-cal" src={Calendar} alt="logo calendrier" /></button>
+                                <h3>Fichier ICS</h3>
+                        </div>
+                        <div class="wrapper__button-link">
+                                <a class="calendar--link-button" href={googleCalendarUrl} target="_blank"><img class="img-button-cal" src={GoogleCal} alt="logo google cal" /></a>
+                                <h3>Google Cal</h3>
+                        </div>
+                        <div class="wrapper__button-link">
+                                <a class="calendar--link-button" href={outlookCalendarUrl} target="_blank"><img class="img-button-cal" src={Outlook} alt="logo outlook" /></a>
+                                <h3>Outlook</h3>
+                        </div>
+                        <!-- <a class="calendar--link-button btn-grad" href={yahooCalendarUrl} target="_blank">Yahoo</a> -->
                 </div>
                 <a class="btn-return-cal" href="/"><img class="return-img" src={Return} alt="" />Retour au calendrier</a>
         </div>
@@ -141,7 +154,7 @@ END:VCALENDAR
                 background-color: var(--ardoise);
                 box-shadow: 0px 0px 15px rgb(50, 50, 50);
                 transition: 0.3s ease-in-out;
-                margin-top: 0px;
+                margin: 40px;
                 text-align: center;
                 border: 2px solid white;
         }
@@ -228,7 +241,6 @@ END:VCALENDAR
 
         .informations:hover {
                 background-color: transparent;
-                color: var(--ardoise);
                 border-radius: 20px;
 
                 box-shadow: none;
@@ -237,28 +249,35 @@ END:VCALENDAR
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: space-around;
-                gap: 10px;
+                justify-content: center;
                 border: none;
                 padding: 10px;
                 border-radius: 10px;
                 max-width: 90%;
-                margin: 20px auto;
+                margin: 50px auto;
+                gap: 30px;
+        }
+        .wrapper__button-link {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-family: "Inter";
+                gap: 10px;
+                font-size: 0.7rem;
         }
 
         .calendar--link-button {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: linear-gradient(45deg, var(--blue), var(--cta2));
-                color: var(--whiteGrey);
+                background-color: var(--whiteGrey);
                 text-align: center;
                 height: 55px;
                 width: 55px;
                 padding: 35px;
                 border-radius: 50%;
                 cursor: pointer;
-                margin-top: 40px;
                 margin-bottom: 10px;
                 text-decoration: none;
                 font-size: 0.8rem;
@@ -276,8 +295,20 @@ END:VCALENDAR
         .wrapper-calendar--link-button {
                 display: flex;
                 flex-direction: rows;
-                gap: 20px;
+                gap: 40px;
                 margin-bottom: 20px;
+        }
+        .wrapper-calendar__h3 {
+                font-family: "Inter";
+                font-size: 1.5rem;
+                font-weight: 300;
+                color: var(--ardoise);
+                margin-top: 0px;
+                text-align: center;
+        }
+        .img-button-cal {
+                height: 50px;
+                width: 50px;
         }
         .btn-grad {
                 background-size: 200% auto;
@@ -297,7 +328,7 @@ END:VCALENDAR
                         padding: 20px;
                 }
                 .wrapper-calendar--link-button {
-                        gap: 7px;
+                        gap: 40px;
                 }
         }
 </style>
