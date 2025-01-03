@@ -139,13 +139,13 @@
                 flex-direction: column;
         }
         header {
-                padding: 15px;
+                /* padding: 15px; */
                 margin-top: 0px;
                 background-color: rgb(249, 241, 242);
                 max-height: 100px;
                 width: 100%;
                 position: fixed;
-                z-index: 0;
+                z-index: 0;     
         }
         .menu-container {
                 display: flex;
@@ -154,6 +154,7 @@
                 width: 100%;
                 z-index: 20;
                 position: relative;
+
         }
 
         .menu {
@@ -184,11 +185,15 @@
         .svg-menu {
                 height: 30px;
                 cursor: pointer;
+               
         }
         .button-menu {
                 border: none;
                 background-color: transparent;
                 transition: 0.3s ease-in-out;
+                margin-right: 20px;
+         
+              
         }
         .button-menu:hover {
                 transform: scale(1.1);

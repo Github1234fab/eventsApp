@@ -39,7 +39,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 10px;
+                gap: 20px;
                 padding: 10px;
                 border-radius: 8px;
                 background-color: white;
@@ -108,7 +108,7 @@
                 line-height: 30px;
                 padding: 10px;
                 text-align: center;
-                min-width: 80%;
+                max-width: 60%;
         }
         .btn-grad {
                 background-size: 200% auto;

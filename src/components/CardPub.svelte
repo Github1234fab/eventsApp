@@ -41,16 +41,15 @@
                 padding: 10px;
                 border-radius: 8px;
                 background-color: white;
-                border: 3px solid rgb(167, 110, 3);
+                /* border: 1px solid rgb(167, 110, 3); */
                 /* box-shadow: 0px 0px 10px  rgba(0, 0, 0, 0.632); */
                 text-decoration: none;
-                flex: 1 1 calc(50% - 20px);
-                max-width: calc(50% - 20px);
-                 min-height: 100%;
+                 max-width: 30%;
+                     min-height: 500px;
         }
         .image {
-                width: 90%;
-                height: 100%;
+                max-width: 200px;
+                max-height: 150px;
                 border-radius: 0px;
         }
 
@@ -76,11 +75,7 @@
         .id {
                 display: none;
         }
-        img {
-                width: 90%;
-                height: 100%;
-                border-radius: 0px;
-        }
+ 
         .lieu {
                 font-size: 1.3em;
                 font-weight: 600;
@@ -89,7 +84,7 @@
         }
 
         .nom {
-                font-size: 3rem;
+                font-size: 1.5rem;
                 font-weight: 900;
                 letter-spacing: -0.9px;
                 color: var(--ardoise);
@@ -106,19 +101,6 @@
                 color: var(--ardoise);
         }
 
-        /* .cat {
-                font-size: 1.8em;
-                font-weight: 500;
-                color: var(--ardoise);
-                text-transform: capitalize;
-        } */
-        /* .description {
-                font-size: 1em;
-                font-weight: 300;
-                letter-spacing: 0px;
-                color: var(--ardoise);
-                margin-bottom: 10px;
-        } */
       .btn-grad {
                 background-size: 200% auto;
                 background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
@@ -141,8 +123,9 @@
                         min-width: 100%;
                         min-height: 100%;
                 }
-                img {
-                        min-width: 95%;
+                .image {
+                        max-width: 90%;
+                        max-height: 300px;
                         border-radius: 0px;
                 }
         }
