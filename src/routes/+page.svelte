@@ -6,7 +6,7 @@
 
         let accessGranted = false;
         let passwordInput = "";
-        const correctPassword = "Cal"; // Remplacez par votre mot de passe.
+        const correctPassword = "cal"; // Remplacez par votre mot de passe.
 
         function checkPassword() {
                 if (passwordInput === correctPassword) {
@@ -18,20 +18,20 @@
 </script>
 
 <main>
-        <!-- {#if accessGranted} -->
+        {#if accessGranted} 
     <!-- Votre application -->
     
 
-        <!-- <Calendar /> -->
-        <!-- <Filter /> -->
+       <!-- <Calendar /> 
+       <Filter />  -->
         <Home />
         <UpLoadJson />
         <UpLoadJsonPub />
-        <!-- {:else} -->
+        {:else} 
 
 
     <!-- Formulaire de protection -->
-    <!-- <div style="text-align: center; margin-top: 50px;">
+  <div style="text-align: center; margin-top: 50px;">
         <h1>Protection par mot de passe</h1>
         <input
             type="password"
@@ -39,8 +39,8 @@
             bind:value={passwordInput}
         />
         <button on:click={checkPassword}>Valider</button>
-    </div> -->
-<!-- {/if} -->
+    </div> 
+ {/if}
 </main>
 
 <style>
