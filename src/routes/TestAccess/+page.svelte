@@ -20,7 +20,11 @@
             .then(stream => {
                 videoStream = stream;
                 const videoElement = document.getElementById('video');
-                videoElement.srcObject = stream;
+                if (videoElement) {
+                    videoElement.srcObject = stream;
+                } else {
+                    console.error('Video element not found');
+                }
             })
             .catch(err => {
                 console.error('Error accessing the camera:', err);
@@ -56,7 +60,7 @@
 
 <main>
     <h1>Camera and GPS Access</h1>
-    <video id="video" width="320" height="240" autoplay></video>
+    <video id="video" width="320" height="240" autoplay aria-hidden="true"></video>
     <p>Geolocation Access:</p>
     <p>Latitude: {latitude}</p>
     <p>Longitude: {longitude}</p>
