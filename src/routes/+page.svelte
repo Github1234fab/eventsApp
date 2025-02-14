@@ -18,7 +18,7 @@
 </script>
 
 <main>
-        {#if accessGranted} 
+        <!-- {#if accessGranted}  -->
     <!-- Votre application -->
     
 
@@ -27,11 +27,11 @@
         <Home />
         <UpLoadJson />
         <UpLoadJsonPub />
-        {:else} 
+        <!-- {:else}  -->
 
 
     <!-- Formulaire de protection -->
-  <div style="text-align: center; margin-top: 50px;">
+  <!-- <div style="text-align: center; margin-top: 50px;">
         <h1>Protection par mot de passe</h1>
         <input
             type="password"
@@ -39,8 +39,8 @@
             bind:value={passwordInput}
         />
         <button on:click={checkPassword}>Valider</button>
-    </div> 
- {/if}
+    </div>  -->
+ <!-- {/if} -->
 </main>
 
 <style>
