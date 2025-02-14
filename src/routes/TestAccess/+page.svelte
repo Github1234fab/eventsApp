@@ -11,49 +11,53 @@
     let map = null;
 
     onMount(() => {
-        // Demander l'accès à la caméra arrière
-        navigator.mediaDevices.getUserMedia({
-            video: {
-                facingMode: { exact: "environment" }
-            }
-        })
-            .then(stream => {
-                videoStream = stream;
-                const videoElement = document.getElementById('video');
-                if (videoElement) {
-                    videoElement.srcObject = stream;
-                } else {
-                    console.error('Video element not found');
+        if (typeof window !== 'undefined' && window.navigator) {
+            // Demander l'accès à la caméra arrière
+            navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: { exact: "environment" }
                 }
             })
-            .catch(err => {
-                console.error('Error accessing the camera:', err);
-            });
+                .then(stream => {
+                    videoStream = stream;
+                    const videoElement = document.getElementById('video');
+                    if (videoElement) {
+                        videoElement.srcObject = stream;
+                    } else {
+                        console.error('Video element not found');
+                    }
+                })
+                .catch(err => {
+                    console.error('Error accessing the camera:', err);
+                });
 
-        // Demander l'accès au GPS
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                geolocation = position;
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                accuracy = position.coords.accuracy;
-                console.log('Geolocation:', position);
+            // Demander l'accès au GPS
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    geolocation = position;
+                    latitude = position.coords.latitude;
+                    longitude = position.coords.longitude;
+                    accuracy = position.coords.accuracy;
+                    console.log('Geolocation:', position);
 
-                // Initialiser la carte Leaflet
-                map = L.map('map').setView([latitude, longitude], 13);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
+                    // Initialiser la carte Leaflet
+                    map = L.map('map').setView([latitude, longitude], 13);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
 
-                // Ajouter un marqueur à la position GPS
-                L.marker([latitude, longitude]).addTo(map)
-                    .bindPopup('Vous êtes ici!')
-                    .openPopup();
-            }, err => {
-                console.error('Error accessing geolocation:', err);
-            });
+                    // Ajouter un marqueur à la position GPS
+                    L.marker([latitude, longitude]).addTo(map)
+                        .bindPopup('Vous êtes ici!')
+                        .openPopup();
+                }, err => {
+                    console.error('Error accessing geolocation:', err);
+                });
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+            }
         } else {
-            console.error('Geolocation is not supported by this browser.');
+            console.error('Window or navigator is not defined.');
         }
     });
 </script>
