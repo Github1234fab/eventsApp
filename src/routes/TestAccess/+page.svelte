@@ -1,12 +1,22 @@
 <script>
     import { onMount } from 'svelte';
+    import L from 'leaflet';
+    import 'leaflet/dist/leaflet.css';
 
     let videoStream = null;
     let geolocation = null;
+    let latitude = null;
+    let longitude = null;
+    let accuracy = null;
+    let map = null;
 
     onMount(() => {
-        // Demander l'accès à la caméra
-        navigator.mediaDevices.getUserMedia({ video: true })
+        // Demander l'accès à la caméra arrière
+        navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: { exact: "environment" }
+            }
+        })
             .then(stream => {
                 videoStream = stream;
                 const videoElement = document.getElementById('video');
@@ -20,7 +30,21 @@
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 geolocation = position;
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                accuracy = position.coords.accuracy;
                 console.log('Geolocation:', position);
+
+                // Initialiser la carte Leaflet
+                map = L.map('map').setView([latitude, longitude], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Ajouter un marqueur à la position GPS
+                L.marker([latitude, longitude]).addTo(map)
+                    .bindPopup('Vous êtes ici!')
+                    .openPopup();
             }, err => {
                 console.error('Error accessing geolocation:', err);
             });
@@ -31,15 +55,13 @@
 </script>
 
 <main>
-    <h1>PWA Demo with Svelte and Firebase</h1>
-    <p>Camera Access:</p>
-    <video controls>
-        <source src="/chemin/vers/video.mp4" type="video/mp4" />
-        <track src="/chemin/vers/sous-titres.vtt" kind="captions" srclang="fr" label="Français">
-        Votre navigateur ne supporte pas la balise vidéo.
-      </video>
+    <h1>Camera and GPS Access</h1>
+    <video id="video" width="320" height="240" autoplay></video>
     <p>Geolocation Access:</p>
-    <pre>{JSON.stringify(geolocation, null, 2)}</pre>
+    <p>Latitude: {latitude}</p>
+    <p>Longitude: {longitude}</p>
+    <p>Accuracy: {accuracy} meters</p>
+    <div id="map" style="width: 100%; height: 400px;"></div>
 </main>
 
 <style>
@@ -54,9 +76,7 @@
         border: 1px solid #ccc;
     }
 
-    pre {
-        text-align: left;
-        white-space: pre-wrap;
-        word-wrap: break-word;
+    #map {
+        margin-top: 20px;
     }
 </style>
