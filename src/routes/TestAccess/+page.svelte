@@ -9,6 +9,9 @@
     let longitude = null;
     let accuracy = null;
     let map = null;
+    let canvas = null;
+    let videoElement = null;
+    let marker = null;
 
     onMount(() => {
         if (typeof window !== 'undefined' && window.navigator) {
@@ -20,7 +23,7 @@
             })
                 .then(stream => {
                     videoStream = stream;
-                    const videoElement = document.getElementById('video');
+                    videoElement = document.getElementById('video');
                     if (videoElement) {
                         videoElement.srcObject = stream;
                     } else {
@@ -54,9 +57,20 @@
                     }).addTo(map);
 
                     // Ajouter un marqueur à la position GPS
-                    L.marker([latitude, longitude]).addTo(map)
+                    marker = L.marker([latitude, longitude]).addTo(map)
                         .bindPopup('Vous êtes ici!')
                         .openPopup();
+
+                    // Mettre à jour la position en temps réel
+                    navigator.geolocation.watchPosition(position => {
+                        latitude = position.coords.latitude;
+                        longitude = position.coords.longitude;
+                        accuracy = position.coords.accuracy;
+                        marker.setLatLng([latitude, longitude]);
+                        map.setView([latitude, longitude], 13);
+                    }, err => {
+                        console.error('Error accessing geolocation:', err);
+                    });
                 }, err => {
                     console.error('Error accessing geolocation:', err);
                 });
@@ -67,11 +81,20 @@
             console.error('Window or navigator is not defined.');
         }
     });
+
+    function captureImage() {
+        if (videoElement && canvas) {
+            const context = canvas.getContext('2d');
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+        }
+    }
 </script>
 
 <main>
     <h1>Camera and GPS Access</h1>
     <video id="video" width="320" height="240" autoplay aria-hidden="true"></video>
+    <button on:click={captureImage}>Capture Image</button>
+    <canvas id="canvas" width="320" height="240"></canvas>
     <p>Geolocation Access:</p>
     <p>Latitude: {latitude}</p>
     <p>Longitude: {longitude}</p>
@@ -87,8 +110,9 @@
         margin: 0 auto;
     }
 
-    video {
+    video, canvas {
         border: 1px solid #ccc;
+        margin-bottom: 1em;
     }
 
     #map {
