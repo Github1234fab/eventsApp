@@ -94,7 +94,7 @@
                 {#if menuVisible}
                         <div class="menu" in:fly={{ x: 400, duration: 1000 }} out:fly={{ x: 400, duration: 1000 }}>
                                 <a href="/CardPubSpace">Commerces</a>
-                                <a href="/TestAccess">Test</a>
+                                <!-- <a href="/TestAccess">Test</a> -->
                                 <a href="/">Nous contacter</a>
                                 <!-- Ajoutez d'autres éléments de menu ici -->
                         </div>

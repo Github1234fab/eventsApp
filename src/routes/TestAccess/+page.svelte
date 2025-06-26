@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import { onMount } from 'svelte';
     import L from 'leaflet';
     import 'leaflet/dist/leaflet.css';
@@ -118,4 +118,4 @@
     #map {
         margin-top: 20px;
     }
-</style>
+</style> -->
